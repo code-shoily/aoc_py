@@ -77,5 +77,5 @@ if __name__ == '__main__':
     _, year_, day_ = sys.argv
     validate_year(year_)
     validate_day(day_)
-    # add_input_stub(year_, day_)
+    add_input_stub(year_, day_)
     add_solution_module(year_, day_)
