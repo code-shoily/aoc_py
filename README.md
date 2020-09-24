@@ -18,20 +18,30 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 
 ### 2015
 
+[Problem Descriptions](http://adventofcode.com/2015)
+
 `Day 1` `Day 2` `Day 3`
 
 ### 2016
+
+[Problem Descriptions](http://adventofcode.com/2016)
 
 `Day 1`
 
 ### 2017
 
+[Problem Descriptions](http://adventofcode.com/2017)
+
 `Day 1` `Day 2`
 
 ### 2018
 
+[Problem Descriptions](http://adventofcode.com/2018)
+
 `Day 1`
 
 ### 2019
+
+[Problem Descriptions](http://adventofcode.com/2019)
 
 `Day 1`
