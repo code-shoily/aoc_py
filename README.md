@@ -38,7 +38,7 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 
 [Problem Descriptions](http://adventofcode.com/2018)
 
-`Day 1`
+`Day 1` `Day 2`
 
 ### 2019
 
