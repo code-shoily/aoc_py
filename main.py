@@ -1,5 +1,2 @@
-from year_2015 import day_3 as D
-
-
 if __name__ == '__main__':
-    print(D.run())
+    print("I will be the future console app!!! For now, I don't do $#!t")
