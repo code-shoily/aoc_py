@@ -8,7 +8,7 @@ CLOSURES = {
     "^": lambda x, y: (x, y + 1),
     "v": lambda x, y: (x, y - 1),
     "<": lambda x, y: (x - 1, y),
-    ">": lambda x, y: (x + 1, y)
+    ">": lambda x, y: (x + 1, y),
 }
 
 

@@ -72,8 +72,10 @@ def checksum_1(lines: List[str]) -> int:
     12
 
     """
-    a, b = reduce(lambda acc, x: (acc[0] + x[0], acc[1] + x[1]),
-                  map(has_two_or_three_times, lines))
+    a, b = reduce(
+        lambda acc, x: (acc[0] + x[0], acc[1] + x[1]),
+        map(has_two_or_three_times, lines),
+    )
 
     return a * b
 
@@ -143,13 +145,10 @@ def run():
     {'part_1': 7221, 'part_2': 'mkcdflathzwsvjxrevymbdpoq'}
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()

@@ -14,7 +14,7 @@ DAY = 2
 
 
 def get_input_data():
-    return array.array('I', map(int, read_from_file(__file__, DAY)[0].split(',')))
+    return array.array("I", map(int, read_from_file(__file__, DAY)[0].split(",")))
 
 
 def part_1():
@@ -56,13 +56,11 @@ def run():
     >>> assert run() == {'part_1': 3562624, 'part_2': 8298}
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(run())

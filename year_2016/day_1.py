@@ -16,10 +16,7 @@ class LR(Enum):
 
     @classmethod
     def get_direction(cls, abbr: str):
-        return {
-            "L": cls.LEFT,
-            "R": cls.RIGHT
-        }[abbr]
+        return {"L": cls.LEFT, "R": cls.RIGHT}[abbr]
 
 
 class Directions(Enum):
@@ -34,7 +31,7 @@ class Directions(Enum):
             cls.NORTH: {LR.LEFT: cls.WEST, LR.RIGHT: cls.EAST},
             cls.SOUTH: {LR.LEFT: cls.EAST, LR.RIGHT: cls.WEST},
             cls.EAST: {LR.LEFT: cls.NORTH, LR.RIGHT: cls.SOUTH},
-            cls.WEST: {LR.LEFT: cls.SOUTH, LR.RIGHT: cls.NORTH}
+            cls.WEST: {LR.LEFT: cls.SOUTH, LR.RIGHT: cls.NORTH},
         }[current][lr]
 
     @classmethod
@@ -45,7 +42,7 @@ class Directions(Enum):
             cls.NORTH: lambda x, y: Point(x=x, y=y + block),
             cls.SOUTH: lambda x, y: Point(x=x, y=y - block),
             cls.EAST: lambda x, y: Point(x=x - block, y=y),
-            cls.WEST: lambda x, y: Point(x=x + block, y=y)
+            cls.WEST: lambda x, y: Point(x=x + block, y=y),
         }[next_direction]
 
 
@@ -81,10 +78,7 @@ class CityGrid:
 
 def parse_command(command: str):
     face, *blocks = command.strip()
-    return Command(
-        face=LR.get_direction(face),
-        blocks=int("".join(blocks))
-    )
+    return Command(face=LR.get_direction(face), blocks=int("".join(blocks)))
 
 
 def get_input_data():
@@ -159,14 +153,12 @@ def part_2():
 
 
 def run():
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     print(run())

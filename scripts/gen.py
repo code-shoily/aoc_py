@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
 '''
 
+
 def validate_year(year: str):
     assert 2015 <= int(year) <= 2019
 
@@ -62,18 +63,18 @@ def validate_day(day):
 
 
 def add_input_stub(year, day):
-    file_handler = os.open(f'year_{year}/files/{day}.dat', FLAGS)
-    with os.fdopen(file_handler, 'w') as f:
+    file_handler = os.open(f"year_{year}/files/{day}.dat", FLAGS)
+    with os.fdopen(file_handler, "w") as f:
         f.write("")
 
 
 def add_solution_module(year, day):
-    file_handler = os.open(f'year_{year}/day_{day}.py', FLAGS)
-    with os.fdopen(file_handler, 'w') as f:
+    file_handler = os.open(f"year_{year}/day_{day}.py", FLAGS)
+    with os.fdopen(file_handler, "w") as f:
         f.write(TEMPLATE.format(year, day))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     _, year_, day_ = sys.argv
     validate_year(year_)
     validate_day(day_)

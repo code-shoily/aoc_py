@@ -71,14 +71,11 @@ def run():
     {'part_1': 3421505, 'part_2': 5129386}
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(run())
-

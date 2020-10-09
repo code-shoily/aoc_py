@@ -11,8 +11,8 @@ from typing import List, Tuple, Dict
 from helpers.input import read_from_file
 
 DAY = 2
-DIAL_PAD_1 = '1 2 3\n4 5 6\n7 8 9'
-DIAL_PAD_2 = '_ _ 1 _ _\n_ 2 3 4 _\n5 6 7 8 9\n_ A B C _\n_ _ D _ _'
+DIAL_PAD_1 = "1 2 3\n4 5 6\n7 8 9"
+DIAL_PAD_2 = "_ _ 1 _ _\n_ 2 3 4 _\n5 6 7 8 9\n_ A B C _\n_ _ D _ _"
 
 
 def get_input_data():
@@ -63,10 +63,10 @@ class SecuritySystem:
 
     def __move(self, instruction):
         new_position = {
-            'U': lambda x, y: (x - 1, y),
-            'D': lambda x, y: (x + 1, y),
-            'L': lambda x, y: (x, y - 1),
-            'R': lambda x, y: (x, y + 1),
+            "U": lambda x, y: (x - 1, y),
+            "D": lambda x, y: (x + 1, y),
+            "L": lambda x, y: (x, y - 1),
+            "R": lambda x, y: (x, y + 1),
         }[instruction](*self.position)
 
         if new_position in self.pad:
@@ -82,10 +82,10 @@ class SecuritySystem:
         row_ = 0
         col_ = 0
 
-        rows = pad.split('\n')
+        rows = pad.split("\n")
         for row in rows:
-            for col in row.split(' '):
-                if col != '_':
+            for col in row.split(" "):
+                if col != "_":
                     self.pad[(row_, col_)] = col
                     self.reverse_pad[col] = (row_, col_)
                 col_ += 1
@@ -95,14 +95,14 @@ class SecuritySystem:
 
 def part_1():
     system = SecuritySystem()
-    system.setup(DIAL_PAD_1, '5')
+    system.setup(DIAL_PAD_1, "5")
 
     return system.run_sequences(get_input_data())
 
 
 def part_2():
     system = SecuritySystem()
-    system.setup(DIAL_PAD_2, '5')
+    system.setup(DIAL_PAD_2, "5")
 
     return system.run_sequences(get_input_data())
 
@@ -115,13 +115,11 @@ def run():
     >>> assert run() == {'part_1': '76792', 'part_2': 'A7AC3'}
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(run())

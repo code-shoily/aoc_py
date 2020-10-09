@@ -13,7 +13,7 @@ DAY = 2
 
 
 def get_input_data() -> List[List[int]]:
-    data = [i.strip().split('\t') for i in read_from_file(__file__, DAY)]
+    data = [i.strip().split("\t") for i in read_from_file(__file__, DAY)]
     table = [[int(j) for j in i] for i in data]
 
     return table
@@ -72,12 +72,12 @@ def even_division(row: List[int]) -> int:
     3
     >>> even_division([3, 8, 6, 5])
     2
-    
+
     """
     row.sort()
     for idx in range(len(row)):
         divisor = row[idx]
-        for number in row[idx + 1:]:
+        for number in row[idx + 1 :]:
             if not number % divisor:
                 result, _ = divmod(number, divisor)
                 return result
@@ -113,13 +113,10 @@ def run():
     True
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return dict(part_1=part_1(), part_2=part_2())
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
