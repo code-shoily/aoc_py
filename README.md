@@ -50,3 +50,4 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 
 [Problem Descriptions](http://adventofcode.com/)
 
+`Day 1`
