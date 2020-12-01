@@ -1,6 +1,6 @@
 # aoc_py
 
-Solutions of Advent of Code puzzles with Python. From 2015 to 2019.
+Solutions of Advent of Code puzzles with Python. From 2015 to 2020.
 
 Visit [Advent of Code](http://adventofcode.com) for the puzzle descriptions.
 
@@ -45,3 +45,8 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 [Problem Descriptions](http://adventofcode.com/2019)
 
 `Day 1` `Day 2`
+
+### 2020
+
+[Problem Descriptions](http://adventofcode.com/)
+

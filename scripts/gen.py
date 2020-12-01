@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
 
 def validate_year(year: str):
-    assert 2015 <= int(year) <= 2019
+    assert 2015 <= int(year) <= 2020
 
 
 def validate_day(day):
