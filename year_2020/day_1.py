@@ -1,21 +1,15 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2020, Day 1
+"""Advent of Code Year 2015, Day 1 - Not Quite Lisp
 
-.. _Link:
-    https://adventofcode.com/2020/day/1
-
+Problem Link: https://adventofcode.com/2015/day/1
 """
-
 from helpers.input import read_input_lines
 
-DAY = 1
+
+def get_input_data() -> list[int]:
+    return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
 
-def get_input_data():
-    return [int(i.strip()) for i in read_input_lines(__file__, DAY)]
-
-
-def part_1():
+def part_1() -> int:
     data = get_input_data()
     data_set = set(data)
 
@@ -25,7 +19,7 @@ def part_1():
             return i * rem
 
 
-def part_2():
+def part_2() -> int:
     data = get_input_data()
     data_set = set(data)
 
@@ -36,21 +30,24 @@ def part_2():
                 return i * j * rem
 
 
-def run():
+def run() -> dict[str, int]:
     """
     Solution runner
     :return: The solutions of both parts of day 1 for year 2020
 
-    >>> result = run()
-    >>> result == {'part_1': 1_014_624, 'part_2': 80_072_256}
-    True
+    >>> run()
+    {'part_1': 1014624, 'part_2': 80072256}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())
