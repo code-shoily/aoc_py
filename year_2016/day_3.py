@@ -1,23 +1,15 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2016, Day 3
+"""Advent of Code Year 2016, Day 3 - Squares With Three Sides
 
-.. _Link:
-    https://adventofcode.com/2016/day/3
-
+Problem Link: https://adventofcode.com/2016/day/3
 """
-import re
-from typing import List
-
 from helpers.input import read_input_lines
-
-DAY = 3
 
 
 def get_input_data():
-    return read_input_lines(__file__, DAY)
+    return read_input_lines(__file__, 3)
 
 
-def split_by_spaces(line: str) -> List[int]:
+def split_by_spaces(line: str) -> list[int]:
     """
     Splits by multiple number of spaces
 
@@ -28,10 +20,10 @@ def split_by_spaces(line: str) -> List[int]:
     [1, 2, 5, 34]
 
     """
-    return sorted([int(i) for i in re.split(r"\s+", line.strip())])
+    return sorted([int(i) for i in line.split(" ") if i])
 
 
-def is_triangle(sides: List[int]) -> bool:
+def is_triangle(sides: list[int]) -> bool:
     """
     Checks if sides in the list can ever form triangle.
 
@@ -51,7 +43,7 @@ def part_1():
     return sum(map(is_triangle, list_of_sides))
 
 
-def chunkify(lst: List[any], by=3) -> List[List[any]]:
+def chunkify(lst: list[any], by=3) -> list[list[any]]:
     """
     Chunks `lst` as list of `by` elements
 
@@ -63,10 +55,10 @@ def chunkify(lst: List[any], by=3) -> List[List[any]]:
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
     """
-    return [lst[i : i + 3] for i in range(0, len(lst), by)]
+    return [lst[i: i + 3] for i in range(0, len(lst), by)]
 
 
-def get_vertical_sides(dataset: List[str]) -> List[List[int]]:
+def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
     """
     Rearranges the matrix so that three vertical numbers form sides of a triangle.
 
@@ -87,8 +79,7 @@ def get_vertical_sides(dataset: List[str]) -> List[List[int]]:
 
 
 def part_2():
-    list_of_sides = get_vertical_sides(get_input_data())
-    return sum(map(is_triangle, list_of_sides))
+    return sum([is_triangle(i) for i in get_vertical_sides(get_input_data())])
 
 
 def run():
@@ -101,7 +92,10 @@ def run():
     True
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2(),
+    }
 
 
 if __name__ == "__main__":
