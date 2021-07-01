@@ -1,27 +1,16 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2017, Day 1
+"""Advent of Code Year 2015, Day 1 - Not Quite Lisp
 
-.. _Link:
-    https://adventofcode.com/2017/day/1
-
+Problem Link: https://adventofcode.com/2015/day/1
 """
-
-from typing import Iterator, List, Tuple
-
 from helpers.input import read_input_lines
 
-DAY = 1
+
+def get_input_data() -> str:
+    return read_input_lines(__file__, 1)[0]
 
 
-def get_input_data():
-    return read_input_lines(__file__, DAY)[0]
-
-
-def repeats_next_value(digits: str) -> Iterator[int]:
-    """
-    Finds numbers that are equal to their next in the list
-    :param digits: String of digits
-    :return:
+def repeats_next_value(digits: str) -> list[int]:
+    """Finds numbers that are equal to their next in the list
 
     >>> list(repeats_next_value('1122'))
     [1, 2]
@@ -42,18 +31,15 @@ def repeats_next_value(digits: str) -> Iterator[int]:
         if a == b:
             pairs.append(a)
 
-    return map(int, pairs)
+    return [int(i) for i in pairs]
 
 
-def part_1():
+def part_1() -> int:
     return sum(repeats_next_value(get_input_data()))
 
 
-def to_numlist(digits: str) -> List[int]:
-    """
-    Converts a string digit into a list of numbers
-    :param digits: Digits in string
-    :return: List of numbers
+def to_numlist(digits: str) -> list[int]:
+    """Converts a string digit into a list of numbers
 
     >>> to_numlist('123')
     [1, 2, 3]
@@ -65,11 +51,8 @@ def to_numlist(digits: str) -> List[int]:
     return [int(i) for i in digits]
 
 
-def half_half(digits: str) -> Tuple[List[int], List[int]]:
-    """
-    Splits a string into half, each containing list of ints
-    :param digits: Number in string format
-    :return: Two parts of digits, each being a list of numbers
+def half_half(digits: str) -> tuple[list[int], list[int]]:
+    """Splits a string into half, each containing list of ints
 
     >>> half_half('123456')
     ([1, 2, 3], [4, 5, 6])
@@ -101,13 +84,7 @@ def solve_captcha(digits: str) -> int:
     4
     """
     a, b = half_half(digits)
-
-    result = 0
-    for (x, y) in zip(a, b):
-        if x == y:
-            result += x
-
-    return result * 2
+    return 2 * sum([x for (x, y) in zip(a, b) if x == y])
 
 
 def part_2():
@@ -120,16 +97,19 @@ def run():
     Solution runner
     :return: The solutions of both parts of day 1 for year 2017
 
-    >>> result = run()
-    >>> result == {'part_1': 1089, 'part_2': 1156}
-    True
+    >>> run()
+    {'part_1': 1089, 'part_2': 1156}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())

@@ -5,25 +5,18 @@
     https://adventofcode.com/2017/day/2
 
 """
-from typing import List, Tuple
-
 from helpers.input import read_input_lines
 
-DAY = 2
 
-
-def get_input_data() -> List[List[int]]:
-    data = [i.strip().split("\t") for i in read_input_lines(__file__, DAY)]
+def get_input_data() -> list[list[int]]:
+    data = [i.strip().split("\t") for i in read_input_lines(__file__, 2)]
     table = [[int(j) for j in i] for i in data]
 
     return table
 
 
-def row_difference(row: List[int]) -> int:
-    """
-    Returns the difference between maximum and minimum of a list
-    :param row:
-    :return:
+def row_difference(row: list[int]) -> int:
+    """Returns the difference between maximum and minimum of a list
 
     >>> row_difference([5, 1, 9, 5])
     8
@@ -38,13 +31,8 @@ def row_difference(row: List[int]) -> int:
     return max(row) - min(row)
 
 
-def checksum_1(table: List[List[int]]) -> int:
-    """
-    Computes the checksum of a table by summing the `row_difference` of all
-    rows.
-
-    :param table:
-    :return:
+def checksum_1(table: list[list[int]]) -> int:
+    """Computes the checksum of a table by summing the `row_difference` of all rows.
 
     >>> checksum_1([[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]])
     18
@@ -53,54 +41,41 @@ def checksum_1(table: List[List[int]]) -> int:
     return sum(row_difference(row) for row in table)
 
 
-def part_1():
-    data = get_input_data()
-    return checksum_1(data)
+def even_division(row: list[int]) -> int:
+    """Finds the division of two such numbers in the row where one evenly divides the other
 
-
-def even_division(row: List[int]) -> int:
-    """
-    Finds the division of two such numbers in the row where one
-    evenly divides the other
-
-    :param row:
-    :return:
-
-    >>> even_division([5, 9, 2, 8])
+    >>> even_division([2, 5, 8, 9])
     4
-    >>> even_division([9, 4, 7, 3])
+    >>> even_division([3, 4, 7, 9])
     3
-    >>> even_division([3, 8, 6, 5])
+    >>> even_division([3, 5, 6, 8])
     2
 
     """
-    row.sort()
-    for idx in range(len(row)):
+    for (idx, _) in enumerate(row):
         divisor = row[idx]
-        for number in row[idx + 1 :]:
+        for number in row[idx + 1:]:
             if not number % divisor:
                 result, _ = divmod(number, divisor)
                 return result
-    raise ValueError
 
 
-def checksum_2(table: List[List[int]]) -> int:
-    """
-    Finds the improved checksum
-
-    :param table:
-    :return:
+def checksum_2(table: list[list[int]]) -> int:
+    """Finds the improved checksum
 
     >>> checksum_2([[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]])
     9
 
     """
-    return sum(even_division(i) for i in table)
+    return sum(even_division(sorted(i)) for i in table)
+
+
+def part_1():
+    return checksum_1(get_input_data())
 
 
 def part_2():
-    data = get_input_data()
-    return checksum_2(data)
+    return checksum_2(get_input_data())
 
 
 def run():
@@ -108,16 +83,19 @@ def run():
     Solution runner
     :return: The solutions of both parts of day 2 for year 2017
 
-    >>> result = run()
-    >>> result == {'part_1': 32020, 'part_2': 236}
-    True
+    >>> run()
+    {'part_1': 32020, 'part_2': 236}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())
