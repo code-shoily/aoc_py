@@ -1,20 +1,15 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2019, Day 2
+"""Advent of Code Year 2015, Day 2 - 1202 Program Alarm
 
-.. _Link:
-    https://adventofcode.com/2019/day/2
-
+Problem Link: https://adventofcode.com/2019/day/2
 """
 import array
 
 from helpers.input import read_input_lines
 from helpers.int_code import IntCode
 
-DAY = 2
-
 
 def get_input_data():
-    return array.array("I", map(int, read_input_lines(__file__, DAY)[0].split(",")))
+    return array.array("I", map(int, read_input_lines(__file__, 2)[0].split(",")))
 
 
 def part_1():
@@ -53,14 +48,19 @@ def run():
     Solution runner
     :return: The solutions of both parts of day 2 for year 2019
 
-    >>> assert run() == {'part_1': 3562624, 'part_2': 8298}
+    >>> run()
+    {'part_1': 3562624, 'part_2': 8298}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2(),
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())

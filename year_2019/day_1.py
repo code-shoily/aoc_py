@@ -1,20 +1,15 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2019, Day 1
+"""Advent of Code Year 2015, Day 1 - The Tyranny of the Rocket Equation
 
-.. _Link:
-    https://adventofcode.com/2019/day/1
-
+Problem Link: https://adventofcode.com/2019/day/1
 """
 import operator
 from functools import reduce
 
 from helpers.input import read_input_lines
 
-DAY = 1
-
 
 def get_input_data():
-    return [int(i.strip()) for i in read_input_lines(__file__, DAY)]
+    return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
 
 def get_fuel(mass):
@@ -62,7 +57,7 @@ def part_2():
     return sum(get_additional_fuel(i) for i in get_input_data())
 
 
-def run():
+def run() -> dict[str, int]:
     """
     Solution runner
     :return: The solutions of both parts of day 1 for year 2019
@@ -71,11 +66,15 @@ def run():
     {'part_1': 3421505, 'part_2': 5129386}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())
