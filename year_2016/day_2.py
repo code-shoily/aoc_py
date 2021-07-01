@@ -1,43 +1,29 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2016, Day 2
+"""Advent of Code Year 2016, Day 2 - Bathroom Security
 
-.. _Link:
-    https://adventofcode.com/2016/day/2
-
+Problem Link: https://adventofcode.com/2016/day/2
 """
-from dataclasses import dataclass
-from typing import List, Tuple, Dict
+from dataclasses import dataclass, field
 
 from helpers.input import read_input_lines
 
-DAY = 2
 DIAL_PAD_1 = "1 2 3\n4 5 6\n7 8 9"
 DIAL_PAD_2 = "_ _ 1 _ _\n_ 2 3 4 _\n5 6 7 8 9\n_ A B C _\n_ _ D _ _"
 
 
-def get_input_data():
-    return [i.strip() for i in read_input_lines(__file__, DAY)]
+def get_input_data() -> list[str]:
+    return [i.strip() for i in read_input_lines(__file__, 2)]
 
 
 @dataclass
 class SecuritySystem:
-    pad: Dict[Tuple[int, int], str]
-    reverse_pad: Dict[str, Tuple[int, int]]
-    keys: List[str]
-    position: Tuple[int, int]
-
-    def __init__(self):
-        self.pad = {}
-        self.keys = []
-        self.reverse_pad = {}
+    pad: dict[tuple[int, int], str] = field(default_factory=dict)
+    reverse_pad: dict[str, tuple[int, int]] = field(default_factory=dict)
+    keys: list[str] = field(default_factory=list)
+    position: tuple[int, int] = field(default_factory=tuple)
 
     def setup(self, pad: str, starting_position: str):
         """
         Sets up the security system with pad and starting position.
-
-        :param pad:
-        :param starting_position:
-        :return:
 
         >>> result = {
         ...     (0, 0): '1', (0, 1): '2', (0, 2): '3',
@@ -55,7 +41,7 @@ class SecuritySystem:
         self.__set_pad(pad)
         self.position = self.reverse_pad[starting_position]
 
-    def run_sequences(self, sequences: List[str]) -> str:
+    def run_sequences(self, sequences: list[str]) -> str:
         for sequence in sequences:
             self.__append_code(sequence)
 
@@ -93,29 +79,33 @@ class SecuritySystem:
             row_ += 1
 
 
-def part_1():
+def part_1() -> str:
     system = SecuritySystem()
     system.setup(DIAL_PAD_1, "5")
 
     return system.run_sequences(get_input_data())
 
 
-def part_2():
+def part_2() -> str:
     system = SecuritySystem()
     system.setup(DIAL_PAD_2, "5")
 
     return system.run_sequences(get_input_data())
 
 
-def run():
+def run() -> dict[str, str]:
     """
     Solution runner
     :return: The solutions of both parts of day 2 for year 2016
 
-    >>> assert run() == {'part_1': '76792', 'part_2': 'A7AC3'}
+    >>> run()
+    {'part_1': '76792', 'part_2': 'A7AC3'}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2(),
+    }
 
 
 if __name__ == "__main__":
