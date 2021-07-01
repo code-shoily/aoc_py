@@ -1,54 +1,52 @@
-import os, sys
+import os
+import sys
+
 from os import O_CREAT, O_EXCL, O_WRONLY
 
 FLAGS = O_CREAT | O_EXCL | O_WRONLY
 TEMPLATE = '''\
-# -*- coding: utf-8 -*-
-"""Advent of Code Year {0}, Day {1}
-
-.. _Link:
-    https://adventofcode.com/{0}/day/{1}
+"""Advent of Code Year {0}, Day {1} - <PLACE TITLE HERE>
+Problem Link: https://adventofcode.com/{0}/day/{1}
 
 """
 
 from helpers.input import read_from_file
 
-DAY = {1}
+
+def get_input_data() -> list[str]:
+    return read_from_file(__file__, {1})
 
 
-def get_input_data():
-    return read_from_file(__file__, DAY)
-
-
-def part_1():
+def part_1() -> int:
     data = get_input_data()
     return 0
 
 
-def part_2():
+def part_2() -> int:
     data = get_input_data()
     return 0
 
 
-def run():
+def run() -> dict[str, int]:
     """
     Solution runner
     :return: The solutions of both parts of day {1} for year {0}
 
-    >>> result = run()
-    >>> result == {{'part_1': 0, 'part_2': 0}}
-    True
+    >>> run()
+    {{'part_1': 0, 'part_2': 0}}
 
     """
-    return dict(
-        part_1=part_1(),
-        part_2=part_2()
-    )
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == '__main__':
     import doctest
+
     doctest.testmod()
+
     print(run())
 
 '''
