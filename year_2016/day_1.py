@@ -148,6 +148,14 @@ def part_2():
 
 
 def run() -> dict[str, int]:
+    """
+    Solution runner
+    :return: The solutions of both parts of day 3 for year 2016
+
+    >>> run()
+    {'part_1': 253, 'part_2': 126}
+
+    """
     return {
         "part_1": part_1(),
         "part_2": part_2()
