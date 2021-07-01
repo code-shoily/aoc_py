@@ -62,6 +62,14 @@ def part_2() -> int:
 
 
 def run() -> dict[str, int]:
+    """
+    Solution runner
+    :return: The solutions of both parts of day 2 for year 2015
+
+    >>> run()
+    {'part_1': 2081, 'part_2': 2341}
+
+    """
     return {
         "part_1": part_1(),
         "part_2": part_2()
@@ -69,4 +77,8 @@ def run() -> dict[str, int]:
 
 
 if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
+
     print(run())

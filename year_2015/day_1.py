@@ -28,13 +28,14 @@ def part_1() -> int:
 def get_basement_position(instructions: str) -> int:
     floor = 0
     for (position, instruction) in enumerate(instructions):
-        match floor:
+        if floor == -1:
+            return position
+
+        match instruction:
             case "(":
                 floor += 1
             case ")":
                 floor -= 1
-            case -1:
-                return position
 
 
 def part_2() -> int:
@@ -42,6 +43,14 @@ def part_2() -> int:
 
 
 def run() -> dict[str, int]:
+    """
+    Solution runner
+    :return: The solutions of both parts of day 1 for year 2015
+
+    >>> run()
+    {'part_1': 232, 'part_2': 1783}
+
+    """
     return {
         "part_1": part_1(),
         "part_2": part_2()
@@ -49,4 +58,8 @@ def run() -> dict[str, int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(run())
