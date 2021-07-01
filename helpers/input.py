@@ -1,8 +1,9 @@
+"""Module to read input file"""
 import os
-from typing import List
 
 
-def read_from_file(location: str, day: int) -> List[str]:
+def read_input_lines(location: str, day: int) -> list[str]:
+    """Read input files. In our current setup, the location of input files is `year_xxxx/files`"""
     dir_path = os.path.dirname(os.path.realpath(location))
     with open(f"{dir_path}/files/{day}.dat") as inf:
         lines = inf.readlines()
