@@ -1,6 +1,6 @@
-"""Advent of Code Year 2015, Day 1 - Not Quite Lisp
+"""Advent of Code Year 2017, Day 1 - Inverse Captcha
 
-Problem Link: https://adventofcode.com/2015/day/1
+Problem Link: https://adventofcode.com/2017/day/1
 """
 from helpers.input import read_input_lines
 

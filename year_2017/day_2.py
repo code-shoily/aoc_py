@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2017, Day 2
+"""Advent of Code Year 2017, Day 2 - Corruption Checksum
 
-.. _Link:
-    https://adventofcode.com/2017/day/2
-
+Problem Link: https://adventofcode.com/2017/day/2
 """
 from helpers.input import read_input_lines
 

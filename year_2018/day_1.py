@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2018, Day 1
+"""Advent of Code Year 2018, Day 1 - Chronal Calibration
 
-.. _Link:
-    https://adventofcode.com/2018/day/1
-
+Problem Link: https://adventofcode.com/2018/day/1
 """
 from itertools import cycle
 from operator import add

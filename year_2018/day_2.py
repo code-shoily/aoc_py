@@ -1,30 +1,19 @@
-# -*- coding: utf-8 -*-
-"""Advent of Code Year 2018, Day 2
+"""Advent of Code Year 2018, Day 2 - Inventory Management System
 
-.. _Link:
-    https://adventofcode.com/2018/day/2
-
+Problem Link: https://adventofcode.com/2018/day/2
 """
 from collections import Counter
 from functools import reduce
-from typing import Tuple, List, Optional
 
 from helpers.input import read_input_lines
 
-DAY = 2
+
+def get_input_data() -> list[str]:
+    return [i.strip() for i in read_input_lines(__file__, 2)]
 
 
-def get_input_data():
-    return [i.strip() for i in read_input_lines(__file__, DAY)]
-
-
-def has_two_or_three_times(line: str) -> Tuple[bool, bool]:
-    """
-
-    :param line:
-    :return:
-
-    ababab contains three a and three b, but it only counts once.
+def has_two_or_three_times(line: str) -> tuple[bool, bool]:
+    """Returns if line has two or three items and returns them as (two_items, three_items)
 
     >>> has_two_or_three_times('abcdef')
     (False, False)
@@ -60,15 +49,10 @@ def has_two_or_three_times(line: str) -> Tuple[bool, bool]:
     return has_two, has_three
 
 
-def checksum_1(lines: List[str]) -> int:
-    """
-    Computes checksum based on product on two and three repetitions
+def checksum_1(lines: list[str]) -> int:
+    """Computes checksum based on product on two and three repetitions
 
-    :param lines:
-    :return:
-
-    >>> checksum_1(['abcdef', 'bababc', 'abbcde', 'abcccd',
-    ...             'aabcdd', 'abcdee', 'ababab'])
+    >>> checksum_1(['abcdef', 'bababc', 'abbcde', 'abcccd', 'aabcdd', 'abcdee', 'ababab'])
     12
 
     """
@@ -80,17 +64,8 @@ def checksum_1(lines: List[str]) -> int:
     return a * b
 
 
-def part_1():
-    data = get_input_data()
-    return checksum_1(data)
-
-
-def has_single_differing_char(a: str, b: str) -> Optional[int]:
-    """
-    Checks if difference between a and b is only 1 in the same position.
-    :param a:
-    :param b:
-    :return: The position of difference, None if False
+def has_single_differing_char(a: str, b: str) -> int | None:
+    """Checks if difference between a and b is only 1 in the same position.
 
     >>> has_single_differing_char('abcde', 'axcye') is None
     True
@@ -111,12 +86,8 @@ def has_single_differing_char(a: str, b: str) -> Optional[int]:
     return idx
 
 
-def correct_box_id(lines: List[str]) -> str:
-    """
-    Finds the common letters of the correct box IDs
-
-    :param lines:
-    :return:
+def correct_box_id(lines: list[str]) -> str:
+    """Finds the common letters of the correct box IDs
 
     >>> ids = ['abcde', 'fghij', 'klmno', 'pqrst', 'fguij', 'axcye', 'wvxyz']
     >>> correct_box_id(ids)
@@ -126,14 +97,15 @@ def correct_box_id(lines: List[str]) -> str:
     for line_1 in lines:
         for line_2 in lines:
             if d := has_single_differing_char(line_1, line_2):  # My first walrus ;)
-                return f"{line_1[:d]}{line_1[d+1:]}"
+                return f"{line_1[:d]}{line_1[d + 1:]}"
 
-    raise ValueError
+
+def part_1():
+    return checksum_1(get_input_data())
 
 
 def part_2():
-    data = get_input_data()
-    return correct_box_id(data)
+    return correct_box_id(get_input_data())
 
 
 def run():
@@ -145,11 +117,15 @@ def run():
     {'part_1': 7221, 'part_2': 'mkcdflathzwsvjxrevymbdpoq'}
 
     """
-    return dict(part_1=part_1(), part_2=part_2())
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     print(run())
