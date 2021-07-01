@@ -1,40 +1,46 @@
+"""Advent of Code Year 2015, Day 3 - Perfectly Spherical Houses in a Vacuum
+
+Problem Link: https://adventofcode.com/2015/day/3
+"""
 from dataclasses import dataclass
-from typing import Set, Tuple, Optional
 
-from helpers.input import read_from_file
-
-DAY = 3
-CLOSURES = {
-    "^": lambda x, y: (x, y + 1),
-    "v": lambda x, y: (x, y - 1),
-    "<": lambda x, y: (x - 1, y),
-    ">": lambda x, y: (x + 1, y),
-}
+from helpers.input import read_input_lines
 
 
 @dataclass
 class Houses:
     STARTING_POSITION = (0, 0)
-    visited: Set[Tuple[int, int]]
-    current: Optional[Tuple[int, int]]
+    visited: set[tuple[int, int]]
+    current: tuple[int, int] | None
 
     def __init__(self, visited=None):
         self.current = self.STARTING_POSITION
         self.visited = visited or {self.STARTING_POSITION}
 
     def visit(self, direction):
-        self.current = CLOSURES[direction](*self.current)
+        x, y = self.current
+
+        match direction:
+            case "^":
+                self.current = (x, y + 1)
+            case "v":
+                self.current = (x, y - 1)
+            case "<":
+                self.current = (x - 1, y)
+            case ">":
+                self.current = (x + 1, y)
+
         self.visited.add(self.current)
 
     def __len__(self):
         return len(self.visited)
 
     def __and__(self, other):
-        return Houses(self.visited.union(other.visited))
+        return Houses(self.visited | other.visited)
 
 
 def get_input_data():
-    return read_from_file(__file__, DAY)[0]
+    return read_input_lines(__file__, 3)[0]
 
 
 def part_1() -> int:
@@ -55,5 +61,12 @@ def part_2() -> int:
     return len(santa_visits & robo_visits)
 
 
-def run():
-    return dict(part_1=part_1(), part_2=part_2())
+def run() -> dict[str, int]:
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
+
+
+if __name__ == '__main__':
+    print(run())

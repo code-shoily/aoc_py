@@ -1,24 +1,31 @@
-from collections import namedtuple
-from operator import mul, add
-from typing import Iterator
+"""Advent of Code Year 2015, Day 2 - I Was Told There Would Be No Math
 
-from helpers.input import read_from_file
+Problem Link: https://adventofcode.com/2015/day/2
+"""
+from dataclasses import dataclass, astuple
 
-DAY = 2
+from helpers.input import read_input_lines
 
 
-class Paper(namedtuple("_", "height,width,length")):
+@dataclass
+class Paper:
+    height: int
+    width: int
+    length: int
+
     def smallest_area(self) -> int:
-        return mul(*sorted(self)[:2])
+        [a, b, *_] = sorted(astuple(self))
+        return a * b
 
     def smallest_perimeter(self) -> int:
-        return add(*sorted(self)[:2]) * 2
+        [a, b, *_] = sorted(astuple(self))
+        return (a + b) * 2
 
     def volume(self) -> int:
         return self.height * self.width * self.length
 
     def perimeter(self) -> int:
-        height, width, length = self
+        height, width, length = astuple(self)
         return 2 * (height * width + width * length + length * height)
 
     def wrapper_size(self) -> int:
@@ -28,21 +35,24 @@ class Paper(namedtuple("_", "height,width,length")):
         return self.smallest_perimeter() + self.volume()
 
 
-def _as_paper(data):
-    return Paper(*map(int, data.split("x")))
+def get_input_data() -> list[Paper]:
+    return [Paper(*map(int, i.split("x"))) for i in read_input_lines(__file__, 2)]
 
 
-def get_input_data() -> Iterator[Paper]:
-    return map(_as_paper, read_from_file(__file__, DAY))
-
-
-def part_1():
+def part_1() -> int:
     return sum(i.wrapper_size() for i in get_input_data())
 
 
-def part_2():
+def part_2() -> int:
     return sum(i.ribbon_size() for i in get_input_data())
 
 
-def run():
-    return dict(part_1=part_1(), part_2=part_2())
+def run() -> dict[str, int]:
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
+
+
+if __name__ == '__main__':
+    print(run())
