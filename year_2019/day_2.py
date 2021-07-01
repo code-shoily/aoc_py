@@ -7,14 +7,14 @@
 """
 import array
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 from helpers.int_code import IntCode
 
 DAY = 2
 
 
 def get_input_data():
-    return array.array("I", map(int, read_from_file(__file__, DAY)[0].split(",")))
+    return array.array("I", map(int, read_input_lines(__file__, DAY)[0].split(",")))
 
 
 def part_1():

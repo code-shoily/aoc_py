@@ -8,7 +8,7 @@
 from dataclasses import dataclass
 from typing import List, Tuple, Dict
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 2
 DIAL_PAD_1 = "1 2 3\n4 5 6\n7 8 9"
@@ -16,7 +16,7 @@ DIAL_PAD_2 = "_ _ 1 _ _\n_ 2 3 4 _\n5 6 7 8 9\n_ A B C _\n_ _ D _ _"
 
 
 def get_input_data():
-    return [i.strip() for i in read_from_file(__file__, DAY)]
+    return [i.strip() for i in read_input_lines(__file__, DAY)]
 
 
 @dataclass

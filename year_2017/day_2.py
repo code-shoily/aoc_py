@@ -7,13 +7,13 @@
 """
 from typing import List, Tuple
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 2
 
 
 def get_input_data() -> List[List[int]]:
-    data = [i.strip().split("\t") for i in read_from_file(__file__, DAY)]
+    data = [i.strip().split("\t") for i in read_input_lines(__file__, DAY)]
     table = [[int(j) for j in i] for i in data]
 
     return table

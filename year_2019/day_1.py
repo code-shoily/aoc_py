@@ -8,13 +8,13 @@
 import operator
 from functools import reduce
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 1
 
 
 def get_input_data():
-    return [int(i.strip()) for i in read_from_file(__file__, DAY)]
+    return [int(i.strip()) for i in read_input_lines(__file__, DAY)]
 
 
 def get_fuel(mass):

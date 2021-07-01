@@ -1,11 +1,12 @@
+"""Advent of Code Year 2016, Day 1 - No Time for a Taxicab
+
+Problem Link: https://adventofcode.com/2016/day/1
+"""
 from collections import namedtuple
 from dataclasses import dataclass
 from enum import Enum, auto
-from typing import List, Set
 
-from helpers.input import read_from_file
-
-DAY = 1
+from helpers.input import read_input_lines
 
 Point = namedtuple("Point", "x, y")
 
@@ -51,10 +52,6 @@ class Command:
     face: LR
     blocks: int
 
-    def __init__(self, face, blocks):
-        self.face = face
-        self.blocks = blocks
-
 
 @dataclass
 class CityGrid:
@@ -82,7 +79,7 @@ def parse_command(command: str):
 
 
 def get_input_data():
-    return map(parse_command, read_from_file(__file__, DAY)[0].split(","))
+    return map(parse_command, read_input_lines(__file__, 1)[0].split(","))
 
 
 def part_1():
@@ -93,9 +90,9 @@ def part_1():
     return len(city_grid)
 
 
-def points_between(start: Point, end: Point) -> List[Point]:
-    """
-    Returns all points between two points
+def points_between(start: Point, end: Point) -> list[Point]:
+    """Returns all points between two points
+
     :param start: Starting point
     :param end: Ending point (Inclusive)
     :return: List of all points between `start` and `end`
@@ -124,10 +121,10 @@ def points_between(start: Point, end: Point) -> List[Point]:
 
     if xs == xe:
         for i in range(ys, ye + 1):
-            output.append(Point(x=xs, y=i))
+            output.append(Point(xs, i))
     else:
         for i in range(xs, xe + 1):
-            output.append(Point(x=i, y=ys))
+            output.append(Point(i, ys))
 
     return list(reversed(output)) if is_reversed else output
 
@@ -135,7 +132,7 @@ def points_between(start: Point, end: Point) -> List[Point]:
 def part_2():
     city_grid = CityGrid()
     current_path = city_grid.position
-    visits = set([])
+    visits = set()
 
     for command in get_input_data():
         city_grid.move(command)
@@ -149,11 +146,12 @@ def part_2():
         else:
             visits |= point_set
 
-    raise ValueError
 
-
-def run():
-    return dict(part_1=part_1(), part_2=part_2())
+def run() -> dict[str, int]:
+    return {
+        "part_1": part_1(),
+        "part_2": part_2()
+    }
 
 
 if __name__ == "__main__":

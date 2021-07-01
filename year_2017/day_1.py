@@ -8,13 +8,13 @@
 
 from typing import Iterator, List, Tuple
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 1
 
 
 def get_input_data():
-    return read_from_file(__file__, DAY)[0]
+    return read_input_lines(__file__, DAY)[0]
 
 
 def repeats_next_value(digits: str) -> Iterator[int]:

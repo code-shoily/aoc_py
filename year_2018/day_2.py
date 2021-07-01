@@ -9,13 +9,13 @@ from collections import Counter
 from functools import reduce
 from typing import Tuple, List, Optional
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 2
 
 
 def get_input_data():
-    return [i.strip() for i in read_from_file(__file__, DAY)]
+    return [i.strip() for i in read_input_lines(__file__, DAY)]
 
 
 def has_two_or_three_times(line: str) -> Tuple[bool, bool]:

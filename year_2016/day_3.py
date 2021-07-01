@@ -8,13 +8,13 @@
 import re
 from typing import List
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 DAY = 3
 
 
 def get_input_data():
-    return read_from_file(__file__, DAY)
+    return read_input_lines(__file__, DAY)
 
 
 def split_by_spaces(line: str) -> List[int]:
