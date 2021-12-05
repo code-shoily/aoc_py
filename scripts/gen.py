@@ -1,16 +1,19 @@
 import os
 import sys
-
 from os import O_CREAT, O_EXCL, O_WRONLY
 
+import requests
+
+CURRENT_YEAR = 2021
 FLAGS = O_CREAT | O_EXCL | O_WRONLY
+INPUT_URL = "https://adventofcode.com/{}/day/{}/input"
 TEMPLATE = '''\
-"""Advent of Code Year {0}, Day {1} - <PLACE TITLE HERE>
+"""Advent of Code Year {0}, Day {1}
 Problem Link: https://adventofcode.com/{0}/day/{1}
 
 """
 
-from helpers.input import read_from_file
+from helpers.input import read_input_lines
 
 
 def get_input_data() -> list[str]:
@@ -36,10 +39,10 @@ def run() -> dict[str, int]:
     {{'part_1': 0, 'part_2': 0}}
 
     """
-    return {
+    return {{
         "part_1": part_1(),
         "part_2": part_2()
-    }
+    }}
 
 
 if __name__ == '__main__':
@@ -52,18 +55,18 @@ if __name__ == '__main__':
 '''
 
 
-def validate_year(year: str):
-    assert 2015 <= int(year) <= 2020
-
-
-def validate_day(day):
-    assert 1 <= int(day) <= 25
+def fetch_input_data(year, day):
+    return requests.get(
+        INPUT_URL.format(year, day),
+        cookies={"session": os.environ.get("COOKIE", None)}
+    ).text
 
 
 def add_input_stub(year, day):
     file_handler = os.open(f"year_{year}/files/{day}.dat", FLAGS)
+    input_data = fetch_input_data(year, day)
     with os.fdopen(file_handler, "w") as f:
-        f.write("")
+        f.write(input_data)
 
 
 def add_solution_module(year, day):
@@ -74,7 +77,7 @@ def add_solution_module(year, day):
 
 if __name__ == "__main__":
     _, year_, day_ = sys.argv
-    validate_year(year_)
-    validate_day(day_)
-    add_input_stub(year_, day_)
+    assert 2015 <= int(year_) <= CURRENT_YEAR
+    assert 1 <= int(day_) <= 25
+    #add_input_stub(year_, day_)
     add_solution_module(year_, day_)

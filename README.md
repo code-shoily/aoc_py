@@ -32,7 +32,7 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 
 [Problem Descriptions](http://adventofcode.com/2017)
 
-`Day 1` `Day 2`
+`Day 1` `Day 2` `Day 4`
 
 ### 2018
 
@@ -47,6 +47,12 @@ To add a new solution, simply type `python scripts/gen.py <year> <day>` and a ne
 `Day 1` `Day 2`
 
 ### 2020
+
+[Problem Descriptions](http://adventofcode.com/2020)
+
+`Day 1`
+
+### 2021
 
 [Problem Descriptions](http://adventofcode.com/)
 
