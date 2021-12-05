@@ -2,8 +2,6 @@
 
 Problem Link: https://adventofcode.com/2017/day/4
 """
-from typing import Any
-
 from helpers.input import read_input_lines
 
 
@@ -21,48 +19,43 @@ def get_words_per_line(data: list[str]):
     return list(map(lambda line: line.split(), data))
 
 
-def find_duplicates(words: list) -> set:
+def has_duplicates(words: list) -> bool:
     """Finds duplicates in a list of words
     
-    >>> find_duplicates(['aa', 'bb', 'cc', 'dd', 'ee'])
-    set()
+    >>> has_duplicates(['aa', 'bb', 'cc', 'dd', 'ee'])
+    False
+
+    >>> has_duplicates(['aa', 'bb', 'cc', 'dd', 'aa'])
+    True
 
     """
-    return set(filter(lambda word: words.count(word) > 1, words))
+    return any(filter(lambda word: words.count(word) > 1, words))
 
 
-def find_anagrams(words: list) -> set:
+def has_anagrams(words: list) -> bool:
     """Finds duplicates in a list of words
 
-    >>> find_anagrams(['ba', 'ba', 'cc', 'dd', 'ee'])
-    {'ab'}
+    >>> has_anagrams(['ba', 'ba', 'cc', 'dd', 'ee'])
+    True
 
-    >>> find_anagrams(['ba', 'ab', 'cc', 'dd', 'ee'])
-    {'ab'}
+    >>> has_anagrams(['ba', 'ab', 'cc', 'dd', 'ee'])
+    True
 
-    >>> find_anagrams(['cc', 'dd', 'ee'])
-    set()
+    >>> has_anagrams(['cc', 'dd', 'ee'])
+    False
 
     """
-    anagrams = set()
-    visited = set()
-    for i in words:
-        sorted_word = "".join(sorted(i))
-        if sorted_word in visited:
-            anagrams.add(sorted_word)
-        visited.add(sorted_word)
-
-    return anagrams
+    return len({"".join(sorted(word)) for word in words}) != len(words)
 
 
 def get_duplicates_in_sentences(sentences):
     """Gets the duplicate words for sentences"""
-    return [find_duplicates(words) for words in sentences]
+    return [has_duplicates(words) for words in sentences]
 
 
 def get_anagrams_in_sentences(sentences):
     """Gets the duplicate words for sentences"""
-    return [find_anagrams(words) for words in sentences]
+    return [has_anagrams(words) for words in sentences]
 
 
 def part_1() -> int:
