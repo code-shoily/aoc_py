@@ -15,9 +15,11 @@ Problem Link: https://adventofcode.com/{0}/day/{1}
 
 from helpers.input import read_input_lines
 
+DAY = {1}
+
 
 def get_input_data() -> list[str]:
-    return read_from_file(__file__, {1})
+    return read_input_lines(__file__, DAY)
 
 
 def part_1() -> int:
@@ -79,5 +81,5 @@ if __name__ == "__main__":
     _, year_, day_ = sys.argv
     assert 2015 <= int(year_) <= CURRENT_YEAR
     assert 1 <= int(day_) <= 25
-    #add_input_stub(year_, day_)
+    add_input_stub(year_, day_)
     add_solution_module(year_, day_)

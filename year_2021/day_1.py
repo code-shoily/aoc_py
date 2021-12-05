@@ -5,7 +5,7 @@ Problem Link: https://adventofcode.com/2021/day/1
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> list[str]:
+def get_input_data() -> list[int]:
     return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
 
