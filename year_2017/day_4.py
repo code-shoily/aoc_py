@@ -11,7 +11,7 @@ def get_input_data() -> list[str]:
 
 def get_words_per_line(data: list[str]):
     """Gets words per line
-    
+
     >>> get_words_per_line(['aa bb cc dd ee', 'bb cc dd'])
     [['aa', 'bb', 'cc', 'dd', 'ee'], ['bb', 'cc', 'dd']]
 
@@ -21,7 +21,7 @@ def get_words_per_line(data: list[str]):
 
 def has_duplicates(words: list) -> bool:
     """Finds duplicates in a list of words
-    
+
     >>> has_duplicates(['aa', 'bb', 'cc', 'dd', 'ee'])
     False
 
@@ -80,10 +80,7 @@ def run():
     {'part_1': 455, 'part_2': 186}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
 if __name__ == "__main__":

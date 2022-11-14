@@ -70,13 +70,10 @@ def run() -> dict[str, int]:
     {'part_1': 2081, 'part_2': 2341}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()

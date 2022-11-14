@@ -38,7 +38,10 @@ def part_2() -> int:
     for instruction in get_input_data():
         match instruction:
             case ("forward", x):
-                pos |= {"horizontal": pos["horizontal"] + x, "depth": pos["depth"] + pos["aim"] * x}
+                pos |= {
+                    "horizontal": pos["horizontal"] + x,
+                    "depth": pos["depth"] + pos["aim"] * x,
+                }
             case ("backward", x):
                 pos["horizontal"] -= x
             case ("up", x):
@@ -58,13 +61,10 @@ def run() -> dict[str, int]:
     {'part_1': 1660158, 'part_2': 1604592846}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()

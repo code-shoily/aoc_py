@@ -55,7 +55,7 @@ def chunkify(lst: list[any], by=3) -> list[list[any]]:
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
     """
-    return [lst[i: i + 3] for i in range(0, len(lst), by)]
+    return [lst[i : i + 3] for i in range(0, len(lst), by)]
 
 
 def get_vertical_sides(dataset: list[str]) -> list[list[int]]:

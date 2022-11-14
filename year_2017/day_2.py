@@ -51,7 +51,7 @@ def even_division(row: list[int]) -> int:
     """
     for (idx, _) in enumerate(row):
         divisor = row[idx]
-        for number in row[idx + 1:]:
+        for number in row[idx + 1 :]:
             if not number % divisor:
                 result, _ = divmod(number, divisor)
                 return result
@@ -84,10 +84,7 @@ def run():
     {'part_1': 32020, 'part_2': 236}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
 if __name__ == "__main__":

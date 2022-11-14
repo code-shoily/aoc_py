@@ -59,8 +59,7 @@ if __name__ == '__main__':
 
 def fetch_input_data(year, day):
     return requests.get(
-        INPUT_URL.format(year, day),
-        cookies={"session": os.environ.get("COOKIE", None)}
+        INPUT_URL.format(year, day), cookies={"session": os.environ.get("COOKIE", None)}
     ).text
 
 

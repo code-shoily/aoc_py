@@ -101,10 +101,7 @@ def run():
     {'part_1': 1089, 'part_2': 1156}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
 if __name__ == "__main__":

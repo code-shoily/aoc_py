@@ -156,10 +156,7 @@ def run() -> dict[str, int]:
     {'part_1': 253, 'part_2': 126}
 
     """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2()
-    }
+    return {"part_1": part_1(), "part_2": part_2()}
 
 
 if __name__ == "__main__":
