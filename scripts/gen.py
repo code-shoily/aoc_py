@@ -4,13 +4,15 @@ from os import O_CREAT, O_EXCL, O_WRONLY
 
 import requests
 
-CURRENT_YEAR = 2021
+CURRENT_YEAR = 2023
 FLAGS = O_CREAT | O_EXCL | O_WRONLY
 INPUT_URL = "https://adventofcode.com/{}/day/{}/input"
 TEMPLATE = '''\
 """Advent of Code Year {0}, Day {1}
 Problem Link: https://adventofcode.com/{0}/day/{1}
-
+Difficulty: 
+Tags:
+Note: 
 """
 
 from helpers.input import read_input_lines
