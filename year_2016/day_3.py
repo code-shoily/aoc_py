@@ -1,6 +1,8 @@
 """Advent of Code Year 2016, Day 3 - Squares With Three Sides
 
 Problem Link: https://adventofcode.com/2016/day/3
+Difficulty: XS
+Tags: sequence geometry
 """
 from helpers.input import read_input_lines
 

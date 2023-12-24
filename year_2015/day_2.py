@@ -1,6 +1,8 @@
 """Advent of Code Year 2015, Day 2 - I Was Told There Would Be No Math
 
 Problem Link: https://adventofcode.com/2015/day/2
+Difficulty: XS
+Tags: geometry
 """
 from dataclasses import dataclass, astuple
 

@@ -1,6 +1,8 @@
 """Advent of Code Year 2015, Day 3 - Perfectly Spherical Houses in a Vacuum
 
 Problem Link: https://adventofcode.com/2015/day/3
+Difficulty: XS
+Tags: cartesian set-operations navigation
 """
 from dataclasses import dataclass
 

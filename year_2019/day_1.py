@@ -1,6 +1,8 @@
 """Advent of Code Year 2019, Day 1 - The Tyranny of the Rocket Equation
 
 Problem Link: https://adventofcode.com/2019/day/1
+Difficulty: XS
+Tags: arithmetic formulae
 """
 import operator
 from functools import reduce

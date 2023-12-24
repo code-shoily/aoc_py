@@ -1,6 +1,7 @@
-"""Advent of Code Year 2021, Day 1
+"""Advent of Code Year 2021, Day 1 - Sonar Sweep
 Problem Link: https://adventofcode.com/2021/day/1
-
+Difficulty: XS
+Tags: sliding-window
 """
 from helpers.input import read_input_lines
 

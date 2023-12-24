@@ -1,6 +1,8 @@
 """Advent of Code Year 2015, Day 1 - Not Quite Lisp
 
 Problem Link: https://adventofcode.com/2015/day/1
+Difficulty: XS
+Tags: sequence
 """
 from helpers.input import read_input_lines
 

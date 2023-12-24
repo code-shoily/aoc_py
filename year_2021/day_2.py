@@ -1,5 +1,7 @@
-"""Advent of Code Year 2021, Day 2
+"""Advent of Code Year 2021, Day 2 - Dive!
 Problem Link: https://adventofcode.com/2021/day/2
+Difficulty: XS
+Tags: command calculation
 """
 from collections import defaultdict
 

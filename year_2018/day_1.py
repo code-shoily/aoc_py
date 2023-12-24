@@ -1,6 +1,8 @@
 """Advent of Code Year 2018, Day 1 - Chronal Calibration
 
 Problem Link: https://adventofcode.com/2018/day/1
+Difficulty: XS
+Tags: sequence
 """
 from itertools import cycle
 from operator import add

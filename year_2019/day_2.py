@@ -1,6 +1,8 @@
 """Advent of Code Year 2019, Day 2 - 1202 Program Alarm
 
 Problem Link: https://adventofcode.com/2019/day/2
+Difficulty: XS
+Tags: op-code emulation
 """
 import array
 

@@ -1,6 +1,8 @@
 """Advent of Code Year 2016, Day 2 - Bathroom Security
 
 Problem Link: https://adventofcode.com/2016/day/2
+Difficulty: XS
+Tags: cartesian navigation
 """
 from dataclasses import dataclass, field
 

@@ -1,6 +1,8 @@
 """Advent of Code Year 2017, Day 1 - Inverse Captcha
 
 Problem Link: https://adventofcode.com/2017/day/1
+Difficulty: XS
+Tags: string
 """
 from helpers.input import read_input_lines
 
