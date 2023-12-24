@@ -12,10 +12,6 @@ DIAL_PAD_1 = "1 2 3\n4 5 6\n7 8 9"
 DIAL_PAD_2 = "_ _ 1 _ _\n_ 2 3 4 _\n5 6 7 8 9\n_ A B C _\n_ _ D _ _"
 
 
-def get_input_data() -> list[str]:
-    return [i.strip() for i in read_input_lines(__file__, 2)]
-
-
 @dataclass
 class SecuritySystem:
     pad: dict[tuple[int, int], str] = field(default_factory=dict)
@@ -81,37 +77,32 @@ class SecuritySystem:
             row_ += 1
 
 
-def part_1() -> str:
+type InputType = list[str]
+type OutputType = tuple[str, str]
+
+
+def get_input_data() -> InputType:
+    return [i.strip() for i in read_input_lines(__file__, 2)]
+
+
+def part_1(data: InputType) -> str:
     system = SecuritySystem()
     system.setup(DIAL_PAD_1, "5")
 
-    return system.run_sequences(get_input_data())
+    return system.run_sequences(data)
 
 
-def part_2() -> str:
+def part_2(data: InputType) -> str:
     system = SecuritySystem()
     system.setup(DIAL_PAD_2, "5")
 
-    return system.run_sequences(get_input_data())
+    return system.run_sequences(data)
 
 
-def run() -> dict[str, str]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2016
-
-    >>> run()
-    {'part_1': '76792', 'part_2': 'A7AC3'}
-
-    """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2(),
-    }
+def run_16_2(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print(run())
+    parsed_input = get_input_data()
+    print(run_16_2(parsed_input))

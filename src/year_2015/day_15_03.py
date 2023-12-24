@@ -67,10 +67,10 @@ def part_2(data: InputType) -> int:
     return len(santa_visits & robo_visits)
 
 
-def run(data: InputType) -> OutputType:
+def run_15_3(data: InputType) -> OutputType:
     return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
     parsed_input = get_input_data()
-    print(run(parsed_input))
+    print(run_15_3(parsed_input))

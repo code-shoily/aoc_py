@@ -7,10 +7,6 @@ Tags: sequence geometry
 from helpers.input import read_input_lines
 
 
-def get_input_data():
-    return read_input_lines(__file__, 3)
-
-
 def split_by_spaces(line: str) -> list[int]:
     """
     Splits by multiple number of spaces
@@ -40,11 +36,6 @@ def is_triangle(sides: list[int]) -> bool:
     return (a + b) > c
 
 
-def part_1():
-    list_of_sides = map(split_by_spaces, get_input_data())
-    return sum(map(is_triangle, list_of_sides))
-
-
 def chunkify(lst: list[any], by=3) -> list[list[any]]:
     """
     Chunks `lst` as list of `by` elements
@@ -64,7 +55,7 @@ def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
     """
     Rearranges the matrix so that three vertical numbers form sides of a triangle.
 
-    :param matrix: Input data, list of list where first list has three items
+    :param dataset: Input data, list of list where first list has three items
     :return: Rearranged list of sides sorted by value
 
     >>> get_vertical_sides(['1  2  3', '4  5  6', '7  8  9'])
@@ -80,28 +71,27 @@ def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
     return [sorted(i) for i in chunkify(sides)]
 
 
-def part_2():
-    return sum([is_triangle(i) for i in get_vertical_sides(get_input_data())])
+type InputType = list[str]
+type OutputType = tuple[int, int]
 
 
-def run():
-    """
-    Solution runner
-    :return: The solutions of both parts of day 3 for year 2016
+def get_input_data() -> InputType:
+    return read_input_lines(__file__, 3)
 
-    >>> result = run()
-    >>> result == {'part_1': 993, 'part_2': 1849}
-    True
 
-    """
-    return {
-        "part_1": part_1(),
-        "part_2": part_2(),
-    }
+def part_1(data: InputType) -> int:
+    list_of_sides = map(split_by_spaces, data)
+    return sum(map(is_triangle, list_of_sides))
+
+
+def part_2(data: InputType) -> int:
+    return sum([is_triangle(i) for i in get_vertical_sides(data)])
+
+
+def run_16_3(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print(run())
+    parsed_input = get_input_data()
+    print(run_16_3(parsed_input))

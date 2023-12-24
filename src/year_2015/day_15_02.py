@@ -53,10 +53,10 @@ def part_2(data: InputType) -> int:
     return sum(i.ribbon_size() for i in data)
 
 
-def run(data: InputType) -> OutputType:
+def run_15_2(data: InputType) -> OutputType:
     return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
     parsed_input = get_input_data()
-    print(run(parsed_input))
+    print(run_15_2(parsed_input))

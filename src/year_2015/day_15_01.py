@@ -40,10 +40,10 @@ def part_2(instructions: InputType) -> int:
                 floor -= 1
 
 
-def run(data: InputType) -> OutputType:
+def run_15_1(data: InputType) -> OutputType:
     return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
     parsed_input = get_input_data()
-    print(run(parsed_input))
+    print(run_15_1(parsed_input))

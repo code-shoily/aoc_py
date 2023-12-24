@@ -75,21 +75,9 @@ class CityGrid:
         return abs(x) + abs(y)
 
 
-def parse_command(command: str):
+def parse_command(command: str) -> Command:
     face, *blocks = command.strip()
     return Command(face=LR.get_direction(face), blocks=int("".join(blocks)))
-
-
-def get_input_data():
-    return map(parse_command, read_input_lines(__file__, 1)[0].split(","))
-
-
-def part_1():
-    city_grid = CityGrid()
-    for command in get_input_data():
-        city_grid.move(command)
-
-    return len(city_grid)
 
 
 def points_between(start: Point, end: Point) -> list[Point]:
@@ -131,12 +119,27 @@ def points_between(start: Point, end: Point) -> list[Point]:
     return list(reversed(output)) if is_reversed else output
 
 
-def part_2():
+type InputType = list[Command]
+type OutputType = tuple[int, int]
+
+def get_input_data():
+    return map(parse_command, read_input_lines(__file__, 1)[0].split(","))
+
+
+def part_1(data: InputType) -> int:
+    city_grid = CityGrid()
+    for command in get_input_data():
+        city_grid.move(command)
+
+    return len(city_grid)
+
+
+def part_2(data: InputType) -> int:
     city_grid = CityGrid()
     current_path = city_grid.position
     visits = set()
 
-    for command in get_input_data():
+    for command in data:
         city_grid.move(command)
         points = points_between(current_path, city_grid.position)
         point_set = set(points) ^ {city_grid.position}
@@ -149,21 +152,10 @@ def part_2():
             visits |= point_set
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2016
-
-    >>> run()
-    {'part_1': 253, 'part_2': 126}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_16_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_16_1(parsed_input))
