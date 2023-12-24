@@ -8,11 +8,10 @@ CURRENT_YEAR = 2023
 FLAGS = O_CREAT | O_EXCL | O_WRONLY
 INPUT_URL = "https://adventofcode.com/{}/day/{}/input"
 TEMPLATE = '''\
-"""Advent of Code Year {0}, Day {1}
+"""Advent of Code Year {0}, Day {1} - <?TITLE?>
 Problem Link: https://adventofcode.com/{0}/day/{1}
 Difficulty: 
 Tags:
-Note: 
 """
 
 from helpers.input import read_input_lines

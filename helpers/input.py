@@ -8,4 +8,4 @@ def read_input_lines(location: str, day: int) -> list[str]:
     with open(f"{dir_path}/files/{day}.dat") as inf:
         lines = inf.readlines()
 
-    return lines
+    return [i.strip() for i in lines]
