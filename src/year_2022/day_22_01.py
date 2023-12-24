@@ -8,7 +8,10 @@ from helpers.input import read_input_lines
 DAY = 1
 
 
-def get_input_data() -> list[int]:
+type InputType = list[int]
+type OutputType = tuple[int, int]
+
+def get_input_data() -> InputType:
     calories = []
     current_calories = 0
     for elf_calorie in [i.strip() for i in read_input_lines(__file__, DAY)]:
@@ -21,31 +24,18 @@ def get_input_data() -> list[int]:
     return calories
 
 
-def part_1() -> int:
-    data = get_input_data()
+def part_1(data: InputType) -> int:
     return sorted(data, reverse=True)[0]
 
 
-def part_2() -> int:
-    data = get_input_data()
+def part_2(data: InputType) -> int:
     return sum(sorted(data, reverse=True)[:3])
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2022
-
-    >>> run()
-    {'part_1': 70720, 'part_2': 207148}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_22_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_22_1(parsed_input))
