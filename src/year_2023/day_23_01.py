@@ -9,12 +9,15 @@ from helpers.input import read_input_lines
 
 DAY = 1
 
+type InputType = list[str]
+type OutputType = tuple[int, int]
 
-def get_input_data() -> list[str]:
+
+def get_input_data() -> InputType:
     return read_input_lines(__file__, DAY)
 
 
-def solve(data, regex) -> int:
+def solve(data: InputType, regex: str) -> int:
     def digit(lst: list[int]) -> int:
         return lst[0] * 10 + lst[-1]
 
@@ -25,25 +28,13 @@ def solve(data, regex) -> int:
     return sum([digit([words_to_nums[i] for i in re.findall(regex, i)]) for i in data])
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2023
-
-    >>> run()
-    {'part_1': 53194, 'part_2': 54249}
-
-    """
-    data = get_input_data()
-    return {
-        "part_1": solve(data, r"\d"),
-        "part_2": solve(data, r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))"),
-    }
+def run_23_1(data: InputType) -> OutputType:
+    return (
+        solve(data, r"\d"),
+        solve(data, r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))"),
+    )
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_23_1(parsed_input))
