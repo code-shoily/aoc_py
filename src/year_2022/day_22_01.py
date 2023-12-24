@@ -37,7 +37,7 @@ def run() -> dict[str, int]:
     :return: The solutions of both parts of day 1 for year 2022
 
     >>> run()
-    {'part_1': ,70720 'part_2': 207_148}
+    {'part_1': 70720, 'part_2': 207148}
 
     """
     return {"part_1": part_1(), "part_2": part_2()}
