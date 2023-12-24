@@ -7,11 +7,15 @@ Tags: sequence
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> str:
+type InputType = str
+type OutputType = tuple[int, int]
+
+
+def get_input_data() -> InputType:
     return read_input_lines(__file__, 1)[0]
 
 
-def get_floor(instructions: str) -> int:
+def part_1(instructions: InputType) -> int:
     floor = 0
     for instruction in instructions:
         match instruction:
@@ -23,11 +27,7 @@ def get_floor(instructions: str) -> int:
     return floor
 
 
-def part_1() -> int:
-    return get_floor(get_input_data())
-
-
-def get_basement_position(instructions: str) -> int:
+def part_2(instructions: InputType) -> int:
     floor = 0
     for (position, instruction) in enumerate(instructions):
         if floor == -1:
@@ -40,25 +40,10 @@ def get_basement_position(instructions: str) -> int:
                 floor -= 1
 
 
-def part_2() -> int:
-    return get_basement_position(get_input_data())
-
-
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2015
-
-    >>> run()
-    {'part_1': 232, 'part_2': 1783}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run(parsed_input))

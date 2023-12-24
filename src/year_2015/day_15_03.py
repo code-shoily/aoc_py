@@ -41,43 +41,36 @@ class Houses:
         return Houses(self.visited | other.visited)
 
 
-def get_input_data():
+type InputType = list[str]
+type OutputType = tuple[int, int]
+
+
+def get_input_data() -> InputType:
     return read_input_lines(__file__, 3)[0]
 
 
-def part_1() -> int:
+def part_1(data: InputType) -> int:
     visits = Houses()
-    for direction in get_input_data():
+    for direction in data:
         visits.visit(direction)
     return len(visits)
 
 
-def part_2() -> int:
+def part_2(data: InputType) -> int:
     santa_visits = Houses()
     robo_visits = Houses()
 
-    for (position, direction) in enumerate(get_input_data()):
+    for (position, direction) in enumerate(data):
         location = position % 2 and robo_visits or santa_visits
         location.visit(direction)
 
     return len(santa_visits & robo_visits)
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2015
-
-    >>> run()
-    {'part_1': 2081, 'part_2': 2341}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run(parsed_input))

@@ -9,7 +9,7 @@ from dataclasses import astuple, dataclass
 from helpers.input import read_input_lines
 
 
-@dataclass
+@dataclass(frozen=True)
 class Paper:
     height: int
     width: int
@@ -37,33 +37,26 @@ class Paper:
         return self.smallest_perimeter() + self.volume()
 
 
+InputType = list[Paper]
+OutputType = tuple[int, int]
+
+
 def get_input_data() -> list[Paper]:
     return [Paper(*map(int, i.split("x"))) for i in read_input_lines(__file__, 2)]
 
 
-def part_1() -> int:
-    return sum(i.wrapper_size() for i in get_input_data())
+def part_1(data: InputType) -> int:
+    return sum(i.wrapper_size() for i in data)
 
 
-def part_2() -> int:
-    return sum(i.ribbon_size() for i in get_input_data())
+def part_2(data: InputType) -> int:
+    return sum(i.ribbon_size() for i in data)
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2015
-
-    >>> run()
-    {'part_1': 1606483, 'part_2': 3842356}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run(parsed_input))
