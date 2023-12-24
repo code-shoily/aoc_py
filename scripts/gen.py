@@ -8,7 +8,7 @@ import requests
 CURRENT_YEAR = 2023
 FLAGS = O_CREAT | O_EXCL | O_WRONLY
 INPUT_URL = "https://adventofcode.com/{}/day/{}/input"
-SOLUTION_TEMPLATE = '''\
+SRC_TPL = '''\
 """Advent of Code Year {0}, Day {1} - <?TITLE?>
 Problem Link: https://adventofcode.com/{0}/day/{1}
 Difficulty: 
@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
 '''
 
-TEST_TEMPLATE = '''
+TEST_TPL = '''
 from year_{0}.day_{1} import get_input_data, run
 
 
@@ -61,7 +61,7 @@ def fetch_input_data(year, day):
     ).text
 
 
-def add_file(file_name: str, template: str | None, year: int, day: int) -> str:
+def do_gen(file_name: str, template: str | None, year: int, day: int) -> str:
     file_handler = os.open(file_name, FLAGS)
     input_data = fetch_input_data(year, day)
     with os.fdopen(file_handler, "w") as f:
@@ -69,39 +69,23 @@ def add_file(file_name: str, template: str | None, year: int, day: int) -> str:
     return file_name
 
 
-def format_year_folder(year: int) -> str:
-    return f"year_{year % 2000}"
+def day_part(year: str, day: str) -> str:
+    return f"{year[2:]}_{day.rjust(2, "0")}"
 
 
-def format_day_file(day: int, ext: str = "py") -> str:
-    return f"day_{str(day).rjust(2, "0")}.{ext}"
+def gen_input(year: str, day: str) -> str:
+    return do_gen(f"src/year_{year}/files/{day_part(year, day)}.txt", None, year, day)
 
 
-def add_input_stub(year, day) -> str:
-    return add_file(
-        f"src/{format_year_folder(year)}/files/{format_day_file(day, "txt")}",
-        None,
-        year,
-        day)
+def gen_src(year: str, day: str) -> str:
+    return do_gen(f"src/year_{year}/day_{day_part(year, day)}.py", SRC_TPL, year, day)
 
 
-def add_solution_module(year, day) -> str:
-    return add_file(
-        f"src/{format_year_folder(year)}/{format_day_file(day)}",
-        SOLUTION_TEMPLATE,
-        year,
-        day)
+def gen_test(year: str, day: str) -> str:
+    return do_gen(f"test/test_year_{year}/test_day_{day_part(year, day)}", TEST_TPL, year, day)
 
 
-def add_test_module(year, day) -> str:
-    return add_file(
-        f"test/test_{format_year_folder(year)}/test_{format_day_file(day)}",
-        TEST_TEMPLATE,
-        year,
-        day)
-
-
-def log_result(func: Callable[[int, int], str], prefix: str, year: int, day: int):
+def log_result(func: Callable[[str, str], str], prefix: str, year: str, day: str):
     try:
         file_name = func(year, day)
         print(f"[{prefix} - SUCCESS] File written: {file_name}")
@@ -114,6 +98,6 @@ if __name__ == "__main__":
     assert 2015 <= int(year_) <= CURRENT_YEAR
     assert 1 <= int(day_) <= 25
 
-    log_result(add_input_stub, "INPUT", year_, day_)
-    log_result(add_solution_module, "SOLUTION", year_, day_)
-    log_result(add_test_module, "TEST", year_, day_)
+    log_result(gen_input, "INPUT", year_, day_)
+    log_result(gen_src, "SOLUTION", year_, day_)
+    log_result(gen_test, "TEST", year_, day_)
