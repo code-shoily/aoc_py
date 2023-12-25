@@ -28,7 +28,7 @@ def part_1(instructions: InputType) -> int:
 
 def part_2(instructions: InputType) -> int:
     floor = 0
-    for (position, instruction) in enumerate(instructions):
+    for position, instruction in enumerate(instructions):
         if floor == -1:
             return position
 

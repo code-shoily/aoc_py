@@ -34,7 +34,7 @@ def even_division(row: list[int]) -> int:
     2
 
     """
-    for (idx, _) in enumerate(row):
+    for idx, _ in enumerate(row):
         divisor = row[idx]
         for number in row[idx + 1 :]:
             if not number % divisor:

@@ -22,7 +22,7 @@ def has_single_differing_char(a: str, b: str) -> int | None:
     """
     idx = None
     diffs = 0
-    for (i, (a, b)) in enumerate(zip(a, b)):
+    for i, (a, b) in enumerate(zip(a, b)):
         if a != b:
             if diffs:
                 return None

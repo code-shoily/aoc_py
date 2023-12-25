@@ -7,7 +7,7 @@ from collections import defaultdict
 
 from helpers.input import read_input_lines
 
-InputType = list[tuple]
+InputType = list[tuple[str, int]]
 OutputType = tuple[int, int]
 
 

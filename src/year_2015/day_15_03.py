@@ -60,7 +60,7 @@ def part_2(data: InputType) -> int:
     santa_visits = Houses()
     robo_visits = Houses()
 
-    for (position, direction) in enumerate(data):
+    for position, direction in enumerate(data):
         location = position % 2 and robo_visits or santa_visits
         location.visit(direction)
 

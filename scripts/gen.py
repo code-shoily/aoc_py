@@ -65,7 +65,7 @@ def fetch_input_data(year, day):
 def do_gen(file_name: str, template: str | None, year: str, day: str) -> str:
     file_handler = os.open(file_name, FLAGS)
     input_data = fetch_input_data(year, day)
-    with (os.fdopen(file_handler, "w") as f):
+    with os.fdopen(file_handler, "w") as f:
         (
             f.write(template.format(year, day, year[2:], day.rjust(2, "0")))
             if template
