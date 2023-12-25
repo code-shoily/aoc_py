@@ -6,7 +6,6 @@ Tags: sequence
 """
 from helpers.input import read_input_lines
 
-
 InputType = str
 OutputType = tuple[int, int]
 

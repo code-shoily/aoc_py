@@ -10,7 +10,6 @@ from copy import copy
 from helpers.input import read_input_lines
 from helpers.int_code import IntCode
 
-
 InputType = array.array[int]
 OutputType = tuple[int, int]
 
