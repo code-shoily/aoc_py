@@ -119,8 +119,9 @@ def points_between(start: Point, end: Point) -> list[Point]:
     return list(reversed(output)) if is_reversed else output
 
 
-type InputType = list[Command]
-type OutputType = tuple[int, int]
+InputType = list[Command]
+OutputType = tuple[int, int]
+
 
 def get_input_data():
     return map(parse_command, read_input_lines(__file__, 1)[0].split(","))

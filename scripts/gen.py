@@ -19,8 +19,8 @@ from helpers.input import read_input_lines
 
 DAY = {1}
 
-type InputType = list[str]
-type OutputType = tuple[int, int]
+InputType = list[str]
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:

@@ -69,8 +69,8 @@ def has_two_or_three_times(line: str) -> tuple[bool, bool]:
     return has_two, has_three
 
 
-type InputType = list[str]
-type OutputType = tuple[int, str]
+InputType = list[str]
+OutputType = tuple[int, str]
 
 
 def get_input_data() -> list[str]:

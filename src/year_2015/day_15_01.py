@@ -7,8 +7,8 @@ Tags: sequence
 from helpers.input import read_input_lines
 
 
-type InputType = str
-type OutputType = tuple[int, int]
+InputType = str
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:

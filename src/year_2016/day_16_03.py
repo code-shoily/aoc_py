@@ -71,8 +71,8 @@ def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
     return [sorted(i) for i in chunkify(sides)]
 
 
-type InputType = list[str]
-type OutputType = tuple[int, int]
+InputType = list[str]
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:

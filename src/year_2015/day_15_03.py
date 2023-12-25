@@ -41,8 +41,8 @@ class Houses:
         return Houses(self.visited | other.visited)
 
 
-type InputType = list[str]
-type OutputType = tuple[int, int]
+InputType = list[str]
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:

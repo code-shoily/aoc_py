@@ -56,8 +56,9 @@ def get_anagrams_in_sentences(sentences):
     return [has_anagrams(words) for words in sentences]
 
 
-type InputType = list[str]
-type OutputType = tuple[int, int]
+InputType = list[str]
+OutputType = tuple[int, int]
+
 
 def get_input_data() -> InputType:
     return read_input_lines(__file__, 4)

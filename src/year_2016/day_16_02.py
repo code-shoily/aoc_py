@@ -77,8 +77,8 @@ class SecuritySystem:
             row_ += 1
 
 
-type InputType = list[str]
-type OutputType = tuple[str, str]
+InputType = list[str]
+OutputType = tuple[str, str]
 
 
 def get_input_data() -> InputType:

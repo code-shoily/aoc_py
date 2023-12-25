@@ -42,8 +42,8 @@ def even_division(row: list[int]) -> int:
                 return result
 
 
-type InputType = list[list[int]]
-type OutputType = tuple[int, int]
+InputType = list[list[int]]
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:

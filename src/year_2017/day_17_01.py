@@ -81,8 +81,8 @@ def solve_captcha(digits: str) -> int:
     return 2 * sum([x for (x, y) in zip(a, b) if x == y])
 
 
-type InputType = str
-type OutputType = tuple[int, int]
+InputType = str
+OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:
