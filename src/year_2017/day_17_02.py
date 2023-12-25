@@ -40,6 +40,7 @@ def even_division(row: list[int]) -> int:
             if not number % divisor:
                 result, _ = divmod(number, divisor)
                 return result
+    raise ValueError("Unreachable Code")
 
 
 InputType = list[list[int]]

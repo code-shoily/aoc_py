@@ -21,7 +21,7 @@ def get_input_data() -> InputType:
 
 
 def part_1(data: InputType) -> int:
-    pos = defaultdict(int)
+    pos: dict[str, int] = defaultdict(int)
 
     for instruction in data:
         match instruction:
@@ -38,7 +38,7 @@ def part_1(data: InputType) -> int:
 
 
 def part_2(data: InputType) -> int:
-    pos = defaultdict(int)
+    pos: dict[str, int] = defaultdict(int)
 
     for instruction in data:
         match instruction:

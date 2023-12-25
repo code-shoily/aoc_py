@@ -20,7 +20,7 @@ def repeats_next_value(digits: str) -> list[int]:
     [9]
 
     """
-    first, *_ = digits
+    first, *_ = list(digits)
     pairs = []
     for i in range(len(digits)):
         a = digits[i]

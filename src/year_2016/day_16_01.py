@@ -76,7 +76,7 @@ class CityGrid:
 
 
 def parse_command(command: str) -> Command:
-    face, *blocks = command.strip()
+    face, *blocks = list(command.strip())
     return Command(face=LR.get_direction(face), blocks=int("".join(blocks)))
 
 
@@ -151,6 +151,8 @@ def part_2(data: InputType) -> int:
                 return abs(point.x) + abs(point.y)
         else:
             visits |= point_set
+
+    raise ValueError("Unreachable Code")
 
 
 def run_16_1(data: InputType) -> OutputType:

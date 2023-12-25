@@ -85,7 +85,7 @@ def part_1(lines: list[str]) -> int:
 
     """
     a, b = reduce(
-        lambda acc, x: (acc[0] + x[0], acc[1] + x[1]),
+        lambda acc, x: (acc[0] + x[0], acc[1] + x[1]),  # type: ignore
         map(has_two_or_three_times, lines),
     )
 
@@ -104,6 +104,7 @@ def part_2(lines: list[str]) -> str:
         for line_2 in lines:
             if d := has_single_differing_char(line_1, line_2):  # My first walrus ;)
                 return f"{line_1[:d]}{line_1[d + 1:]}"
+    raise ValueError("Unreachable Code")
 
 
 def run_18_2(data: InputType) -> OutputType:

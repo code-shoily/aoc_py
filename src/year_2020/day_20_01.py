@@ -22,6 +22,8 @@ def part_1(data: InputType) -> int:
         if rem in data_set:
             return i * rem
 
+    raise ValueError("Unreachable Code")
+
 
 def part_2(data: InputType) -> int:
     data_set = set(data)
@@ -31,6 +33,8 @@ def part_2(data: InputType) -> int:
             rem = 2020 - (i + j)
             if rem in data_set:
                 return i * j * rem
+
+    raise ValueError("Unreachable Code")
 
 
 def run_20_1(data: InputType) -> OutputType:

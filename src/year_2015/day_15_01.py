@@ -38,6 +38,8 @@ def part_2(instructions: InputType) -> int:
             case ")":
                 floor -= 1
 
+    raise ValueError("Unreachable Code")
+
 
 def run_15_1(data: InputType) -> OutputType:
     return part_1(data), part_2(data)

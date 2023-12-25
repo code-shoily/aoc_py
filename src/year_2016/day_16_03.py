@@ -36,7 +36,7 @@ def is_triangle(sides: list[int]) -> bool:
     return (a + b) > c
 
 
-def chunkify(lst: list[any], by=3) -> list[list[any]]:
+def chunkify(lst: list[int], by=3) -> list[list[int]]:
     """
     Chunks `lst` as list of `by` elements
 

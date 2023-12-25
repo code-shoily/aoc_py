@@ -17,7 +17,7 @@ class SecuritySystem:
     pad: dict[tuple[int, int], str] = field(default_factory=dict)
     reverse_pad: dict[str, tuple[int, int]] = field(default_factory=dict)
     keys: list[str] = field(default_factory=list)
-    position: tuple[int, int] = field(default_factory=tuple)
+    position: tuple[int, int] = field(default_factory=lambda: (0, 0))
 
     def setup(self, pad: str, starting_position: str):
         """
