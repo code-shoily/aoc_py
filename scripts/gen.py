@@ -45,14 +45,15 @@ if __name__ == '__main__':
 
 '''
 
-TEST_TPL = '''
+TEST_TPL = """
 from year_{0}.day_{2}_{3} import get_input_data, run_{2}_{1}
 
 
 def test_day_{2}_{1}_works():
     parsed_input = get_input_data()
     assert run_{2}_{1}(parsed_input) == (0, 0)
-'''
+
+"""
 
 
 def fetch_input_data(year, day):
@@ -65,14 +66,16 @@ def do_gen(file_name: str, template: str | None, year: str, day: str) -> str:
     file_handler = os.open(file_name, FLAGS)
     input_data = fetch_input_data(year, day)
     with (os.fdopen(file_handler, "w") as f):
-        (f.write(template.format(year, day, year[2:], day.rjust(2, "0")))
-         if template
-         else f.write(input_data))
+        (
+            f.write(template.format(year, day, year[2:], day.rjust(2, "0")))
+            if template
+            else f.write(input_data)
+        )
     return file_name
 
 
 def day_part(year: str, day: str) -> str:
-    return f"{year[2:]}_{day.rjust(2, "0")}"
+    return "_".join(year[2:], day.rjust(2, "0"))
 
 
 def gen_input(year: str, day: str) -> str:
@@ -84,7 +87,9 @@ def gen_src(year: str, day: str) -> str:
 
 
 def gen_test(year: str, day: str) -> str:
-    return do_gen(f"test/test_year_{year}/test_day_{day_part(year, day)}.py", TEST_TPL, year, day)
+    return do_gen(
+        f"test/test_year_{year}/test_day_{day_part(year, day)}.py", TEST_TPL, year, day
+    )
 
 
 def log_result(func: Callable[[str, str], str], prefix: str, year: str, day: str):

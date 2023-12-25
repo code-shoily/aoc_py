@@ -1,4 +1,3 @@
-
 from year_2023.day_23_01 import get_input_data, run_23_1
 
 
