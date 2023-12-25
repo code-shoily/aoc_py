@@ -5,9 +5,6 @@ exclude = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = [
-    "tests",
-]
 pythonpath = "src"
 addopts = "--doctest-modules --cov"
 log_cli="true"
