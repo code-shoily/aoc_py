@@ -75,7 +75,7 @@ def do_gen(file_name: str, template: str | None, year: str, day: str) -> str:
 
 
 def day_part(year: str, day: str) -> str:
-    return "_".join(year[2:], day.rjust(2, "0"))
+    return "_".join([year[2:], day.rjust(2, "0")])
 
 
 def gen_input(year: str, day: str) -> str:
