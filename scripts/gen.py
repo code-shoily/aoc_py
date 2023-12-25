@@ -11,7 +11,7 @@ INPUT_URL = "https://adventofcode.com/{}/day/{}/input"
 SRC_TPL = '''\
 """Advent of Code Year {0}, Day {1} - <?TITLE?>
 Problem Link: https://adventofcode.com/{0}/day/{1}
-Difficulty: 
+Difficulty:
 Tags:
 """
 

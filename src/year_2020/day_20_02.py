@@ -1,6 +1,6 @@
 """Advent of Code Year 2020, Day 2 - <?TITLE?>
 Problem Link: https://adventofcode.com/2020/day/2
-Difficulty: 
+Difficulty:
 Tags:
 """
 from collections import Counter
