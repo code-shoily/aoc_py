@@ -7,10 +7,6 @@ Tags: string
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> list[str]:
-    return read_input_lines(__file__, 4)
-
-
 def get_words_per_line(data: list[str]):
     """Gets words per line
 
@@ -60,34 +56,28 @@ def get_anagrams_in_sentences(sentences):
     return [has_anagrams(words) for words in sentences]
 
 
-def part_1() -> int:
+type InputType = list[str]
+type OutputType = tuple[int, int]
+
+def get_input_data() -> InputType:
+    return read_input_lines(__file__, 4)
+
+
+def part_1(data: InputType) -> int:
     """Remove lines with duplicate words from data"""
-    data = get_input_data()
     duplicates = get_duplicates_in_sentences(get_words_per_line(data))
     return len(list(filter(lambda i: not i, duplicates)))
 
 
-def part_2() -> int:
-    data = get_input_data()
+def part_2(data: InputType) -> int:
     anagrams = get_anagrams_in_sentences(get_words_per_line(data))
     return len(list(filter(lambda i: not i, anagrams)))
 
 
-def run():
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2017
-
-    >>> run()
-    {'part_1': 455, 'part_2': 186}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_17_4(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_17_4(parsed_input))

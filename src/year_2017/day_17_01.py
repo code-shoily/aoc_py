@@ -7,10 +7,6 @@ Tags: string
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> str:
-    return read_input_lines(__file__, 1)[0]
-
-
 def repeats_next_value(digits: str) -> list[int]:
     """Finds numbers that are equal to their next in the list
 
@@ -34,10 +30,6 @@ def repeats_next_value(digits: str) -> list[int]:
             pairs.append(a)
 
     return [int(i) for i in pairs]
-
-
-def part_1() -> int:
-    return sum(repeats_next_value(get_input_data()))
 
 
 def to_numlist(digits: str) -> list[int]:
@@ -89,26 +81,26 @@ def solve_captcha(digits: str) -> int:
     return 2 * sum([x for (x, y) in zip(a, b) if x == y])
 
 
-def part_2():
-    data = get_input_data()
+type InputType = str
+type OutputType = tuple[int, int]
+
+
+def get_input_data() -> InputType:
+    return read_input_lines(__file__, 1)[0]
+
+
+def part_1(data: InputType) -> int:
+    return sum(repeats_next_value(data))
+
+
+def part_2(data: InputType) -> int:
     return solve_captcha(data)
 
 
-def run():
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2017
-
-    >>> run()
-    {'part_1': 1089, 'part_2': 1156}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_17_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_17_1(parsed_input))

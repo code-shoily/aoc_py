@@ -7,13 +7,6 @@ Tags: arithmetic checksum
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> list[list[int]]:
-    data = [i.strip().split("\t") for i in read_input_lines(__file__, 2)]
-    table = [[int(j) for j in i] for i in data]
-
-    return table
-
-
 def row_difference(row: list[int]) -> int:
     """Returns the difference between maximum and minimum of a list
 
@@ -28,16 +21,6 @@ def row_difference(row: list[int]) -> int:
 
     """
     return max(row) - min(row)
-
-
-def checksum_1(table: list[list[int]]) -> int:
-    """Computes the checksum of a table by summing the `row_difference` of all rows.
-
-    >>> checksum_1([[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]])
-    18
-
-    """
-    return sum(row_difference(row) for row in table)
 
 
 def even_division(row: list[int]) -> int:
@@ -59,39 +42,41 @@ def even_division(row: list[int]) -> int:
                 return result
 
 
-def checksum_2(table: list[list[int]]) -> int:
+type InputType = list[list[int]]
+type OutputType = tuple[int, int]
+
+
+def get_input_data() -> InputType:
+    data = [i.strip().split("\t") for i in read_input_lines(__file__, 2)]
+    table = [[int(j) for j in i] for i in data]
+
+    return table
+
+
+def part_1(table: InputType) -> int:
+    """Computes the checksum of a table by summing the `row_difference` of all rows.
+
+    >>> part_1([[5, 1, 9, 5], [7, 5, 3], [2, 4, 6, 8]])
+    18
+
+    """
+    return sum(row_difference(row) for row in table)
+
+
+def part_2(table: InputType) -> int:
     """Finds the improved checksum
 
-    >>> checksum_2([[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]])
+    >>> part_2([[5, 9, 2, 8], [9, 4, 7, 3], [3, 8, 6, 5]])
     9
 
     """
     return sum(even_division(sorted(i)) for i in table)
 
 
-def part_1():
-    return checksum_1(get_input_data())
-
-
-def part_2():
-    return checksum_2(get_input_data())
-
-
-def run():
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2017
-
-    >>> run()
-    {'part_1': 32020, 'part_2': 236}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_17_2(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_17_2(parsed_input))
