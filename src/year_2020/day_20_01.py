@@ -6,13 +6,15 @@ Tags: n-sum
 """
 from helpers.input import read_input_lines
 
+InputType = list[int]
+OutputType = tuple[int, int]
+
 
 def get_input_data() -> list[int]:
     return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
 
-def part_1() -> int:
-    data = get_input_data()
+def part_1(data: InputType) -> int:
     data_set = set(data)
 
     for i in data:
@@ -21,8 +23,7 @@ def part_1() -> int:
             return i * rem
 
 
-def part_2() -> int:
-    data = get_input_data()
+def part_2(data: InputType) -> int:
     data_set = set(data)
 
     for i in data:
@@ -32,21 +33,10 @@ def part_2() -> int:
                 return i * j * rem
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2020
-
-    >>> run()
-    {'part_1': 1014624, 'part_2': 80072256}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_20_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_20_1(parsed_input))
