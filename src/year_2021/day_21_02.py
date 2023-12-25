@@ -8,7 +8,11 @@ from collections import defaultdict
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> list[tuple]:
+InputType = list[tuple]
+OutputType = tuple[int, int]
+
+
+def get_input_data() -> InputType:
     instructions = []
     for i in read_input_lines(__file__, day=2):
         (direction, x) = i.strip().split(" ")
@@ -17,10 +21,10 @@ def get_input_data() -> list[tuple]:
     return instructions
 
 
-def part_1() -> int:
+def part_1(data: InputType) -> int:
     pos = defaultdict(int)
 
-    for instruction in get_input_data():
+    for instruction in data:
         match instruction:
             case ("forward", x):
                 pos["horizontal"] += x
@@ -34,10 +38,10 @@ def part_1() -> int:
     return pos["horizontal"] * pos["depth"]
 
 
-def part_2() -> int:
+def part_2(data: InputType) -> int:
     pos = defaultdict(int)
 
-    for instruction in get_input_data():
+    for instruction in data:
         match instruction:
             case ("forward", x):
                 pos |= {
@@ -54,21 +58,10 @@ def part_2() -> int:
     return pos["horizontal"] * pos["depth"]
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2021
-
-    >>> run()
-    {'part_1': 1660158, 'part_2': 1604592846}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_21_2(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_21_2(parsed_input))

@@ -5,37 +5,27 @@ Tags: sliding-window
 """
 from helpers.input import read_input_lines
 
+InputType = list[int]
+OutputType = tuple[int, int]
 
-def get_input_data() -> list[int]:
+
+def get_input_data() -> InputType:
     return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
 
-def part_1() -> int:
-    data = get_input_data()
+def part_1(data: InputType) -> int:
     return len([i for i in zip(data, data[1:]) if i[0] < i[1]])
 
 
-def part_2() -> int:
-    data = get_input_data()
+def part_2(data: InputType) -> int:
     window_sums = [sum(i) for i in zip(data, data[1:], data[2:])]
     return len([i for i in zip(window_sums, window_sums[1:]) if i[0] < i[1]])
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2021
-
-    >>> run()
-    {'part_1': 1139, 'part_2': 1103}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_21_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_21_1(parsed_input))
