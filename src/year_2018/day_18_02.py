@@ -10,8 +10,26 @@ from functools import reduce
 from helpers.input import read_input_lines
 
 
-def get_input_data() -> list[str]:
-    return [i.strip() for i in read_input_lines(__file__, 2)]
+def has_single_differing_char(a: str, b: str) -> int | None:
+    """Checks if difference between a and b is only 1 in the same position.
+
+    >>> has_single_differing_char('abcde', 'axcye') is None
+    True
+
+    >>> has_single_differing_char('abcde', 'abcye')
+    3
+
+    """
+    idx = None
+    diffs = 0
+    for (i, (a, b)) in enumerate(zip(a, b)):
+        if a != b:
+            if diffs:
+                return None
+            diffs += 1
+            idx = i
+
+    return idx
 
 
 def has_two_or_three_times(line: str) -> tuple[bool, bool]:
@@ -51,10 +69,18 @@ def has_two_or_three_times(line: str) -> tuple[bool, bool]:
     return has_two, has_three
 
 
-def checksum_1(lines: list[str]) -> int:
+type InputType = list[str]
+type OutputType = tuple[int, str]
+
+
+def get_input_data() -> list[str]:
+    return [i.strip() for i in read_input_lines(__file__, 2)]
+
+
+def part_1(lines: list[str]) -> int:
     """Computes checksum based on product on two and three repetitions
 
-    >>> checksum_1(['abcdef', 'bababc', 'abbcde', 'abcccd', 'aabcdd', 'abcdee', 'ababab'])
+    >>> part_1(['abcdef', 'bababc', 'abbcde', 'abcccd', 'aabcdd', 'abcdee', 'ababab'])
     12
 
     """
@@ -66,33 +92,11 @@ def checksum_1(lines: list[str]) -> int:
     return a * b
 
 
-def has_single_differing_char(a: str, b: str) -> int | None:
-    """Checks if difference between a and b is only 1 in the same position.
-
-    >>> has_single_differing_char('abcde', 'axcye') is None
-    True
-
-    >>> has_single_differing_char('abcde', 'abcye')
-    3
-
-    """
-    idx = None
-    diffs = 0
-    for (i, (a, b)) in enumerate(zip(a, b)):
-        if a != b:
-            if diffs:
-                return None
-            diffs += 1
-            idx = i
-
-    return idx
-
-
-def correct_box_id(lines: list[str]) -> str:
+def part_2(lines: list[str]) -> str:
     """Finds the common letters of the correct box IDs
 
     >>> ids = ['abcde', 'fghij', 'klmno', 'pqrst', 'fguij', 'axcye', 'wvxyz']
-    >>> correct_box_id(ids)
+    >>> part_2(ids)
     'fgij'
 
     """
@@ -102,29 +106,10 @@ def correct_box_id(lines: list[str]) -> str:
                 return f"{line_1[:d]}{line_1[d + 1:]}"
 
 
-def part_1():
-    return checksum_1(get_input_data())
-
-
-def part_2():
-    return correct_box_id(get_input_data())
-
-
-def run():
-    """
-    Solution runner
-    :return: The solutions of both parts of day 2 for year 2018
-
-    >>> run()
-    {'part_1': 7221, 'part_2': 'mkcdflathzwsvjxrevymbdpoq'}
-
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def run_18_2(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_18_2(parsed_input))
