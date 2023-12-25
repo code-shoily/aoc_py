@@ -10,10 +10,6 @@ from functools import reduce
 from helpers.input import read_input_lines
 
 
-def get_input_data():
-    return [int(i.strip()) for i in read_input_lines(__file__, 1)]
-
-
 def get_fuel(mass):
     """
     Get fuel of a module given the mass
@@ -26,10 +22,6 @@ def get_fuel(mass):
 
     """
     return (mass // 3) - 2
-
-
-def part_1():
-    return reduce(operator.add, map(get_fuel, get_input_data()))
 
 
 def get_additional_fuel(mass):
@@ -55,25 +47,26 @@ def get_additional_fuel(mass):
     return sum(total)
 
 
-def part_2():
-    return sum(get_additional_fuel(i) for i in get_input_data())
+InputType = list[int]
+OutputType = tuple[int, int]
 
 
-def run() -> dict[str, int]:
-    """
-    Solution runner
-    :return: The solutions of both parts of day 1 for year 2019
+def get_input_data() -> InputType:
+    return [int(i.strip()) for i in read_input_lines(__file__, 1)]
 
-    >>> run()
-    {'part_1': 3421505, 'part_2': 5129386}
 
-    """
-    return {"part_1": part_1(), "part_2": part_2()}
+def part_1(data: InputType) -> int:
+    return reduce(operator.add, map(get_fuel, data))
+
+
+def part_2(data: InputType):
+    return sum(get_additional_fuel(i) for i in data)
+
+
+def run_19_1(data: InputType) -> OutputType:
+    return part_1(data), part_2(data)
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(run())
+    parsed_input = get_input_data()
+    print(run_19_1(parsed_input))
