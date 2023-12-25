@@ -15,6 +15,7 @@ def read_input_lines(location: str, day: int) -> list[str]:
     year = extract_year_from_dir(dir_path)
     day_part = str(day).rjust(2, "0")
 
+    # XXX: f"{dir_path}/files/{year}_{str(day).rjust(2, "0")}.txt") confuses black.
     with open(f"{dir_path}/files/{year}_{day_part}.txt") as inf:
         lines = inf.readlines()
 
