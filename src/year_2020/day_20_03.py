@@ -3,10 +3,13 @@ Problem Link: https://adventofcode.com/2020/day/3
 Difficulty: xs
 Tags: grid
 """
+from functools import reduce
+
 from helpers.input import read_input_lines
 
 DAY = 3
 TREE = "#"
+SLOPES = [(1, 1), (5, 1), (7, 1), (1, 2)]
 InputType = list[list[str]]
 OutputType = tuple[int, int]
 
@@ -19,15 +22,10 @@ def count_trees(grid: InputType, right: int, down: int) -> int:
     trees = 0
     h, v, size = 0, 0, len(grid[0])
 
-    def next_position(cur_h: int, cur_v: int) -> tuple[int, int] | None:
-        horizontal = (cur_h + right) % size
-        vertical = cur_v + down
-
-        return (horizontal, vertical) if vertical < len(grid) else None
-
-    while pos := next_position(h, v):
-        h, v = pos
+    while v < len(grid):
         trees += 1 if grid[v][h] == TREE else 0
+        h = (h + right) % size
+        v = v + down
 
     return trees
 
@@ -37,13 +35,7 @@ def part_1(data: InputType) -> int:
 
 
 def part_2(data: InputType) -> int:
-    slopes = [(1, 1), (5, 1), (7, 1), (1, 2)]
-    result = 1
-
-    for right, down in slopes:
-        result *= count_trees(data, right, down)
-
-    return result
+    return reduce(lambda acc, x: acc * count_trees(data, x[0], x[1]), SLOPES, 1)
 
 
 def run_20_3(data: InputType) -> tuple[int, int]:
