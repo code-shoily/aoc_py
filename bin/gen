@@ -1,0 +1,2 @@
+#!/bin/sh
+python src/scripts/gen.py $1 $2

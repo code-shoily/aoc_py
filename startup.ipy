@@ -1,0 +1,8 @@
+%load_ext autoreload
+%autoreload 2
+
+import sys
+
+sys.path.append("src")
+
+from year_2015 import day_15_01 as D
