@@ -5,8 +5,8 @@ import sys
 
 sys.path.append("src")
 
-from year_2015 import day_15_01 as D
-
+YEAR = 2020
+DAY = 3
 
 def load_day(year, day):
     year_part = year % 2000
@@ -15,6 +15,7 @@ def load_day(year, day):
     return importlib.import_module(f"year_{year}.day_{year_part}_{day_part}")
 
 
+D = load_day(YEAR, DAY)
+
 def recompile():
     importlib.reload(D)
-
