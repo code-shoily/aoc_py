@@ -24,7 +24,7 @@ def row_difference(row: list[int]) -> int:
 
 
 def even_division(row: list[int]) -> int:
-    """Finds the division of two such numbers in the row where one evenly divides the other
+    """Find number pair in `row` where one evenly divides the other
 
     >>> even_division([2, 5, 8, 9])
     4

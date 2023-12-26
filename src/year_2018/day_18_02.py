@@ -22,8 +22,8 @@ def has_single_differing_char(a: str, b: str) -> int | None:
     """
     idx = None
     diffs = 0
-    for i, (a, b) in enumerate(zip(a, b)):
-        if a != b:
+    for i, (x, y) in enumerate(zip(a, b)):
+        if x != y:
             if diffs:
                 return None
             diffs += 1
@@ -33,7 +33,7 @@ def has_single_differing_char(a: str, b: str) -> int | None:
 
 
 def has_two_or_three_times(line: str) -> tuple[bool, bool]:
-    """Returns if line has two or three items and returns them as (two_items, three_items)
+    """Returns if line has two or three items and returns (two, three)
 
     >>> has_two_or_three_times('abcdef')
     (False, False)

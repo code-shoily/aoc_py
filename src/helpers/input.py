@@ -10,7 +10,7 @@ def extract_year_from_dir(location: str) -> int:
 
 
 def read_input_lines(location: str, day: int) -> list[str]:
-    """Read input files. In our current setup, the location of input files is `year_xxxx/files`"""
+    """Read input files. The location of input files is `year_xxxx/files`"""
     dir_path = os.path.dirname(os.path.realpath(location))
     year = extract_year_from_dir(dir_path)
     day_part = str(day).rjust(2, "0")

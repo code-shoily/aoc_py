@@ -1,8 +1,20 @@
 %load_ext autoreload
-%autoreload 2
 
+import importlib
 import sys
 
 sys.path.append("src")
 
 from year_2015 import day_15_01 as D
+
+
+def load_day(year, day):
+    year_part = year % 2000
+    day_part = str(day).rjust(2, "0")
+
+    return importlib.import_module(f"year_{year}.day_{year_part}_{day_part}")
+
+
+def recompile():
+    importlib.reload(D)
+

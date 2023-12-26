@@ -2,7 +2,6 @@ import array
 import operator
 from dataclasses import dataclass
 from enum import Enum
-from typing import List
 
 
 class OpCodes(Enum):
@@ -69,7 +68,7 @@ class IntCode:
 
     def is_running(self) -> bool:
         try:
-            state = OpCodes.END != OpCodes(self.program[self.current_pointer])
+            state = OpCodes(self.program[self.current_pointer]) != OpCodes.END
         except ValueError:
             state = False
 
