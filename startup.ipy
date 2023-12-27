@@ -6,7 +6,7 @@ import sys
 sys.path.append("src")
 
 YEAR = 2020
-DAY = 3
+DAY = 4
 
 def load_day(year, day):
     year_part = year % 2000
