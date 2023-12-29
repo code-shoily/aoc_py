@@ -4,6 +4,8 @@ Problem Link: https://adventofcode.com/2016/day/3
 Difficulty: XS
 Tags: sequence geometry
 """
+import itertools
+
 from helpers.input import read_input_lines
 
 
@@ -36,21 +38,6 @@ def is_triangle(sides: list[int]) -> bool:
     return (a + b) > c
 
 
-def chunkify(lst: list[int], by=3) -> list[list[int]]:
-    """
-    Chunks `lst` as list of `by` elements
-
-    :param lst: The list to chunkify
-    :param by: Size of each chunk (default to 3)
-    :return: Chunked List
-
-    >>> chunkify([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-
-    """
-    return [lst[i : i + 3] for i in range(0, len(lst), by)]
-
-
 def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
     """
     Rearranges the matrix so that three vertical numbers form sides of a triangle.
@@ -68,7 +55,7 @@ def get_vertical_sides(dataset: list[str]) -> list[list[int]]:
 
     sides = parsed_data[0::3] + parsed_data[1::3] + parsed_data[2::3]
 
-    return [sorted(i) for i in chunkify(sides)]
+    return [sorted(i) for i in itertools.batched(sides, 3)]
 
 
 InputType = list[str]

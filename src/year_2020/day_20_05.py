@@ -1,6 +1,6 @@
 """Advent of Code Year 2020, Day 5 - <?TITLE?>
 Problem Link: https://adventofcode.com/2020/day/5
-Difficulty: s
+Difficulty: S
 Tags: number-system
 """
 import itertools

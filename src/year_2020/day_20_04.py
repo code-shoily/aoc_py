@@ -1,6 +1,6 @@
 """Advent of Code Year 2020, Day 4 - Passport Processing
 Problem Link: https://adventofcode.com/2020/day/4
-Difficulty: xs
+Difficulty: XS
 Tags: section-parse validation
 """
 import itertools
@@ -83,7 +83,7 @@ OutputType = tuple[int, int]
 
 def get_input_data() -> InputType:
     lines = read_input_lines(__file__, DAY)
-    passports = [make_passport(p) for s, p in itertools.groupby(lines, bool) if s]
+    passports = [make_passport(list(p)) for s, p in itertools.groupby(lines, bool) if s]
     return list(filter(None, passports))
 
 

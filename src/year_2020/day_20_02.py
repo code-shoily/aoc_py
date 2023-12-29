@@ -1,7 +1,7 @@
-"""Advent of Code Year 2020, Day 2 - <?TITLE?>
+"""Advent of Code Year 2020, Day 2 - Password Philosophy
 Problem Link: https://adventofcode.com/2020/day/2
-Difficulty:
-Tags:
+Difficulty: XS
+Tags: range
 """
 from collections import Counter
 from dataclasses import dataclass

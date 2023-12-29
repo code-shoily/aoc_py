@@ -1,6 +1,6 @@
 """Advent of Code Year 2020, Day 3 - Toboggan Trajectory
 Problem Link: https://adventofcode.com/2020/day/3
-Difficulty: xs
+Difficulty: XS
 Tags: grid
 """
 from functools import reduce

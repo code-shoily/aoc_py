@@ -87,13 +87,13 @@ def points_between(start: Point, end: Point) -> list[Point]:
     :param end: Ending point (Inclusive)
     :return: List of all points between `start` and `end`
 
-    >>> [tuple(i) for i in points_between((0, 0), (0, -3))]
+    >>> [tuple(x) for x in points_between((0, 0), (0, -3))]
     [(0, 0), (0, -1), (0, -2), (0, -3)]
 
-    >>> [tuple(i) for i in points_between((-1, -4), (-4, -4))]
+    >>> [tuple(x) for x in points_between((-1, -4), (-4, -4))]
     [(-1, -4), (-2, -4), (-3, -4), (-4, -4)]
 
-    >>> [tuple(i) for i in points_between((3, 5), (1, 5))]
+    >>> [tuple(x) for x in points_between((3, 5), (1, 5))]
     [(3, 5), (2, 5), (1, 5)]
 
     """
@@ -123,8 +123,8 @@ InputType = list[Command]
 OutputType = tuple[int, int]
 
 
-def get_input_data():
-    return map(parse_command, read_input_lines(__file__, 1)[0].split(","))
+def get_input_data() -> InputType:
+    return list(map(parse_command, read_input_lines(__file__, 1)[0].split(",")))
 
 
 def part_1(data: InputType) -> int:

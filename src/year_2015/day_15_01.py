@@ -6,39 +6,24 @@ Tags: sequence
 """
 from helpers.input import read_input_lines
 
-InputType = str
+InputType = list[int]
 OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:
-    return read_input_lines(__file__, 1)[0]
+    return [(1 if i == "(" else -1) for i in read_input_lines(__file__, 1)[0]]
 
 
 def part_1(instructions: InputType) -> int:
-    floor = 0
-    for instruction in instructions:
-        match instruction:
-            case "(":
-                floor += 1
-            case ")":
-                floor -= 1
-
-    return floor
+    return sum(i for i in instructions)
 
 
 def part_2(instructions: InputType) -> int:
-    floor = 0
-    for position, instruction in enumerate(instructions):
-        if floor == -1:
-            return position
+    floor, step = 0, 0
+    while floor != -1:
+        floor, step = floor + instructions[step], step + 1
 
-        match instruction:
-            case "(":
-                floor += 1
-            case ")":
-                floor -= 1
-
-    raise ValueError("Unreachable Code")
+    return step
 
 
 def run_15_1(data: InputType) -> OutputType:

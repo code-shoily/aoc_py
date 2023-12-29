@@ -4,89 +4,72 @@ Problem Link: https://adventofcode.com/2017/day/1
 Difficulty: XS
 Tags: string
 """
+import itertools
+
 from helpers.input import read_input_lines
 
 
-def repeats_next_value(digits: str) -> list[int]:
+def repeats_next_value(digits: list[int]) -> list[int]:
     """Finds numbers that are equal to their next in the list
 
-    >>> list(repeats_next_value('1122'))
+    >>> list(repeats_next_value([1, 1, 2, 2]))
     [1, 2]
 
-    >>> list(repeats_next_value('1111'))
+    >>> list(repeats_next_value([1, 1, 1, 1]))
     [1, 1, 1, 1]
 
-    >>> list(repeats_next_value('91212129'))
+    >>> list(repeats_next_value([9, 1, 2, 1, 2, 1, 2, 9]))
     [9]
 
     """
-    first, *_ = list(digits)
-    pairs = []
-    for i in range(len(digits)):
-        a = digits[i]
-        b = first if i == len(digits) - 1 else digits[i + 1]
-
-        if a == b:
-            pairs.append(a)
-
-    return [int(i) for i in pairs]
+    digits.append(digits[0])
+    return list(
+        map(lambda i: i[0], filter(lambda i: i[0] == i[1], itertools.pairwise(digits)))
+    )
 
 
-def to_numlist(digits: str) -> list[int]:
-    """Converts a string digit into a list of numbers
-
-    >>> to_numlist('123')
-    [1, 2, 3]
-
-    >>> to_numlist('1')
-    [1]
-
-    """
-    return [int(i) for i in digits]
-
-
-def half_half(digits: str) -> tuple[list[int], list[int]]:
+def half_half(digits: list[int]) -> tuple[list[int], list[int]]:
     """Splits a string into half, each containing list of ints
 
-    >>> half_half('123456')
+    >>> half_half([1, 2, 3, 4, 5, 6])
     ([1, 2, 3], [4, 5, 6])
 
     """
     mid_point = len(digits) // 2
-    return to_numlist(digits[:mid_point]), to_numlist(digits[mid_point:])
+    return digits[:mid_point], digits[mid_point:]
 
 
-def solve_captcha(digits: str) -> int:
+def solve_captcha(digits: list[int]) -> int:
     """
     Solves captcha version 2
     :param digits:
     :return:
 
-    >>> solve_captcha('1212')
+    >>> solve_captcha([1, 2, 1, 2])
     6
 
-    >>> solve_captcha('1221')
+    >>> solve_captcha([1, 2, 2, 1])
     0
 
-    >>> solve_captcha('123425')
+    >>> solve_captcha([1, 2, 3, 4, 2, 5])
     4
 
-    >>> solve_captcha('123123')
+    >>> solve_captcha([1, 2, 3, 1, 2, 3])
     12
 
-    >>> solve_captcha('12131415')
+    >>> solve_captcha([1, 2, 1, 3, 1, 4, 1, 5])
     4
     """
     a, b = half_half(digits)
     return 2 * sum([x for (x, y) in zip(a, b) if x == y])
 
 
-InputType = str
+InputType = list[int]
 OutputType = tuple[int, int]
 
 
 def get_input_data() -> InputType:
-    return read_input_lines(__file__, 1)[0]
+    return [int(i) for i in read_input_lines(__file__, 1)[0]]
 
 
 def part_1(data: InputType) -> int:
