@@ -70,10 +70,13 @@ traitlets==5.14.1
     # via
     #   ipython
     #   matplotlib-inline
+types-requests==2.31.0.20240218
 typing-extensions==4.10.0
     # via mypy
 urllib3==2.2.1
-    # via requests
+    # via
+    #   requests
+    #   types-requests
 virtualenv==20.25.1
     # via pre-commit
 wcwidth==0.2.13
