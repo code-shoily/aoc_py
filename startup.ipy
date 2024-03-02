@@ -1,14 +1,15 @@
 %load_ext autoreload
 
 import importlib
+import os
 import sys
 
 sys.path.append("src")
 
-YEAR = 2020
-DAY = 5
+YEAR = os.environ.get("YEAR", 2020)
+DAY = os.environ.get("DAY", 1)
 
-def load_day(year, day):
+def load_day(year: int, day: int):
     year_part = year % 2000
     day_part = str(day).rjust(2, "0")
 
