@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2020/day/2
 Difficulty: XS
 Tags: range
 """
+
 from collections import Counter
 from dataclasses import dataclass
 

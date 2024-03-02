@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2020/day/4
 Difficulty: XS
 Tags: section-parse validation
 """
+
 import itertools
 from dataclasses import dataclass
 from functools import reduce

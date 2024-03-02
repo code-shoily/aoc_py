@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2020/day/3
 Difficulty: XS
 Tags: grid
 """
+
 from functools import reduce
 
 from helpers.input import read_input_lines

@@ -1,4 +1,5 @@
 """Module to read input file"""
+
 import os
 
 

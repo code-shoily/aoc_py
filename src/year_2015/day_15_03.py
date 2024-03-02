@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2015/day/3
 Difficulty: XS
 Tags: cartesian set-operations navigation
 """
+
 from dataclasses import dataclass
 
 from helpers.input import read_input_lines

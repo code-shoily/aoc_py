@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2021/day/2
 Difficulty: XS
 Tags: command calculation
 """
+
 from collections import defaultdict
 
 from helpers.input import read_input_lines

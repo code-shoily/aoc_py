@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2021/day/1
 Difficulty: XS
 Tags: sliding-window
 """
+
 from helpers.input import read_input_lines
 
 InputType = list[int]

@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2019/day/1
 Difficulty: XS
 Tags: arithmetic formulae
 """
+
 import operator
 from functools import reduce
 

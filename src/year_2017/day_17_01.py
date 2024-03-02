@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2017/day/1
 Difficulty: XS
 Tags: string
 """
+
 import itertools
 
 from helpers.input import read_input_lines

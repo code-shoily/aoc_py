@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2017/day/4
 Difficulty: XS
 Tags: string
 """
+
 from helpers.input import read_input_lines
 
 

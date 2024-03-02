@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2016/day/3
 Difficulty: XS
 Tags: sequence geometry
 """
+
 import itertools
 
 from helpers.input import read_input_lines

@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2016/day/1
 Difficulty: XS
 Tags: cartesian navigation
 """
+
 from collections import namedtuple
 from dataclasses import dataclass
 from enum import Enum, auto

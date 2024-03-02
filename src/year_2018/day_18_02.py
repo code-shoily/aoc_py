@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2018/day/2
 Difficulty: S
 Tags: string set checksum
 """
+
 from collections import Counter
 from functools import reduce
 

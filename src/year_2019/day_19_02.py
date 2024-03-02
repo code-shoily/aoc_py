@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2019/day/2
 Difficulty: XS
 Tags: op-code emulation int-code
 """
+
 import array
 from copy import copy
 

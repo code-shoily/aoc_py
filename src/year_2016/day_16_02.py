@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2016/day/2
 Difficulty: XS
 Tags: cartesian navigation
 """
+
 from dataclasses import dataclass, field
 
 from helpers.input import read_input_lines

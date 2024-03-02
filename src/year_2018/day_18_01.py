@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2018/day/1
 Difficulty: XS
 Tags: sequence
 """
+
 from functools import reduce
 from itertools import cycle
 from operator import add

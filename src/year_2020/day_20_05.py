@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2020/day/5
 Difficulty: S
 Tags: number-system
 """
+
 import itertools
 
 from helpers.input import read_input_lines

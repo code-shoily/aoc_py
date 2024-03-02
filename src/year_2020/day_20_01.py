@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2020/day/1
 Difficulty: XS
 Tags: n-sum
 """
+
 from helpers.input import read_input_lines
 
 InputType = list[int]

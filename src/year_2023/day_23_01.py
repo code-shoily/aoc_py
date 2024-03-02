@@ -3,6 +3,7 @@ Problem Link: https://adventofcode.com/2023/day/1
 Difficulty: XS
 Tags: regex
 """
+
 import re
 
 from helpers.input import read_input_lines

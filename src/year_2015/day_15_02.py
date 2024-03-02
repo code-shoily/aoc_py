@@ -4,6 +4,7 @@ Problem Link: https://adventofcode.com/2015/day/2
 Difficulty: XS
 Tags: geometry
 """
+
 from dataclasses import astuple, dataclass
 
 from helpers.input import read_input_lines
