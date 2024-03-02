@@ -1,0 +1,7 @@
+ipython
+mypy
+ruff
+pre-commit
+requests
+pytest
+pytest-cov
