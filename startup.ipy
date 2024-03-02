@@ -17,5 +17,21 @@ def load_day(year, day):
 
 D = load_day(YEAR, DAY)
 
+
+def input_data():
+    return D.get_input_data()
+
+
+def run(part:int = 0):
+    data = input_data()
+    match part:
+        case 0:
+            return (D.part_1(data), D.part_2(data))
+        case 1:
+            return D.part_1(data)
+        case 2:
+            return D.part_2(data)
+
+
 def recompile():
     importlib.reload(D)
