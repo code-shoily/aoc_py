@@ -63,18 +63,17 @@ class SecuritySystem:
         self.keys.append(self.pad[self.position])
 
     def __set_pad(self, pad: str):
-        row_ = 0
-        col_ = 0
+        col_idx = 0
 
         rows = pad.split("\n")
-        for row in rows:
+        for row_idx, row in enumerate(rows):
             for col in row.split(" "):
                 if col != "_":
-                    self.pad[(row_, col_)] = col
-                    self.reverse_pad[col] = (row_, col_)
-                col_ += 1
-            col_ = 0
-            row_ += 1
+                    self.pad[(row_idx, col_idx)] = col
+                    self.reverse_pad[col] = (row_idx, col_idx)
+                col_idx += 1
+            col_idx = 0
+            row_idx += 1
 
 
 InputType = list[str]
