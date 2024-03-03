@@ -26,16 +26,20 @@ def get_input_data() -> InputType:
     ]
 
 
-def count_by(by: Callable[[set, set], set], responses: list[str]):
+def count_by(by: Callable[[set, set], set], responses: list[str]) -> int:
     return len(reduce(by, [set(i) for i in responses[1:]], set(responses[0])))
 
 
+def solve_by(by: Callable[[set, set], set], responses: InputType) -> int:
+    return sum(map(partial(count_by, by), responses))
+
+
 def part_1(responses: InputType) -> int:
-    return sum(map(partial(count_by, set.union), responses))
+    return solve_by(set.union, responses)
 
 
 def part_2(responses: InputType) -> int:
-    return sum(map(partial(count_by, set.intersection), responses))
+    return solve_by(set.intersection, responses)
 
 
 def run_20_6(data: InputType) -> tuple[int, int]:
