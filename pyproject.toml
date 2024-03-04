@@ -5,6 +5,9 @@ exclude = [
 ]
 
 [tool.pytest.ini_options]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')"
+]
 pythonpath = "src"
 addopts = "--doctest-modules --cov"
 log_cli="true"
