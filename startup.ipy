@@ -6,8 +6,8 @@ import sys
 
 sys.path.append("src")
 
-YEAR = os.environ.get("YEAR", 2017)
-DAY = os.environ.get("DAY", 5)
+YEAR = os.environ.get("YEAR", 2016)
+DAY = os.environ.get("DAY", 4)
 
 def load_day(year: int, day: int):
     year_part = year % 2000
