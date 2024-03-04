@@ -101,7 +101,9 @@ class Device:
 
 
 def part_1(data: InputType) -> int:
-    return Device(data).run(ok_only=False)
+    if result := Device(data).run(ok_only=False):
+        return result
+    raise ValueError("Unreachable code")
 
 
 def part_2(data: InputType) -> int:
@@ -111,6 +113,8 @@ def part_2(data: InputType) -> int:
             return result
 
         data[idx].flip()
+
+    raise ValueError("Unreachable Code")
 
 
 def run_20_8(data: InputType) -> tuple[int, int]:
