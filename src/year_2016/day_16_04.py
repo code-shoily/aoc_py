@@ -27,30 +27,30 @@ class Room:
 
     @property
     def is_valid(self) -> bool:
-        top_5 = [
+        return [
             i[0]
             for i in sorted(
                 Counter(self.name).most_common(), key=lambda a: (-1 * a[1], a[0])
             )
-        ][:5]
-        return top_5 == [*self.checksum]
+        ][:5] == [*self.checksum]
 
     @property
     def decrypted_name(self):
-        rotated = map(
-            lambda ch: chr(ord("a") + ((ord(ch) - ord("a")) + self.sector_id) % 26),
-            self.name,
+        return "".join(
+            map(
+                lambda ch: chr(ord("a") + ((ord(ch) - ord("a")) + self.sector_id) % 26),
+                self.name,
+            )
         )
-        return "".join(rotated)
 
 
 InputType = list[Room]
 OutputType = tuple[int, int]
-NEEDLE = "northpoleobjectstorage"
+NORTH_POLE_OBJECT_STORAGE = "northpoleobjectstorage"
 
 
 def get_input_data() -> InputType:
-    return list(map(Room.from_str, read_input_lines(__file__, DAY)))
+    return [Room.from_str(line) for line in read_input_lines(__file__, DAY)]
 
 
 def get_valid_rooms(rooms: InputType) -> InputType:
@@ -58,12 +58,12 @@ def get_valid_rooms(rooms: InputType) -> InputType:
 
 
 def part_1(data: InputType) -> int:
-    return sum([i.sector_id for i in get_valid_rooms(data)])
+    return sum(i.sector_id for i in get_valid_rooms(data))
 
 
 def part_2(data: InputType) -> int:
     for room in get_valid_rooms(data):
-        if room.decrypted_name == NEEDLE:
+        if room.decrypted_name == NORTH_POLE_OBJECT_STORAGE:
             return room.sector_id
 
     raise ValueError("Unreachable code")
