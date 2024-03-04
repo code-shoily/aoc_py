@@ -21,28 +21,32 @@ class Room:
 
     @classmethod
     def from_str(cls, data: str) -> Self:
-        tokens = data.split("-")
-        name = tokens[:-1]
-        [sector_id, checksum] = tokens[-1].strip("]").split("[")
+        *name, suffix = data.strip("]").split("-")
+        sector_id, checksum = suffix.split("[")
         return cls(name="".join(name), sector_id=int(sector_id), checksum=checksum)
 
     @property
     def is_valid(self) -> bool:
-        top_5 = sorted(
-            Counter(self.name).most_common(), key=lambda a: (-1 * a[1], a[0])
-        )[:5]
-        return self.checksum == "".join([i[0] for i in top_5])
+        top_5 = [
+            i[0]
+            for i in sorted(
+                Counter(self.name).most_common(), key=lambda a: (-1 * a[1], a[0])
+            )
+        ][:5]
+        return top_5 == [*self.checksum]
 
     @property
-    def decrypt(self):
-        return "".join(self._rotated_value(i) for i in self.name)
-
-    def _rotated_value(self, char: str):
-        return chr(ord("a") + ((ord(char) - ord("a")) + self.sector_id) % 26)
+    def decrypted_name(self):
+        rotated = map(
+            lambda ch: chr(ord("a") + ((ord(ch) - ord("a")) + self.sector_id) % 26),
+            self.name,
+        )
+        return "".join(rotated)
 
 
 InputType = list[Room]
 OutputType = tuple[int, int]
+NEEDLE = "northpoleobjectstorage"
 
 
 def get_input_data() -> InputType:
@@ -59,7 +63,7 @@ def part_1(data: InputType) -> int:
 
 def part_2(data: InputType) -> int:
     for room in get_valid_rooms(data):
-        if room.decrypt.startswith("northpoleobject"):
+        if room.decrypted_name == NEEDLE:
             return room.sector_id
 
     raise ValueError("Unreachable code")
