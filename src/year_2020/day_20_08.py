@@ -1,6 +1,6 @@
-"""Advent of Code Year 2020, Day 8 - <?TITLE?>
+"""Advent of Code Year 2020, Day 8 - Handheld Halting
 Problem Link: https://adventofcode.com/2020/day/8
-Difficulty:
+Difficulty: XS
 Tags: op-code
 """
 
@@ -24,13 +24,12 @@ class Instruction:
     op_code: OpCode
     value: int
 
-    def __str__(self):
-        return f"{self.op_code.name}=>{self.value}"
-
     def should_flip(self):
+        """Returns if this instruction should be flipped"""
         return self.op_code == OpCode.JMP or self.op_code == OpCode.NOP
 
     def flip(self):
+        """Flips the instruction if it is either NOP or JMP"""
         if self.should_flip():
             self.op_code = OpCode.NOP if self.op_code == OpCode.JMP else OpCode.JMP
 
