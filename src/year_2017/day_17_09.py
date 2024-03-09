@@ -14,42 +14,35 @@ InputType = list["StreamResult"]
 OutputType = tuple[int, int]
 
 
-@dataclass
+@dataclass(frozen=True)
 class StreamResult:
-    score = 0
-    garbage = 0
-
-
-@dataclass
-class Flags:
-    is_cancel = False
-    is_garbage = False
-    level = 0
+    score: int
+    garbage: int
 
 
 def process(stream: str) -> StreamResult:
-    input_flags = Flags()
-    stream_result = StreamResult()
+    cancel_mode, garbage_mode = False, False
+    level, score, garbage = 0, 0, 0
 
     for char in stream:
-        match (char, input_flags):
-            case (_, Flags(is_cancel=True)):
-                input_flags.is_cancel = False
-            case ("!", _):
-                input_flags.is_cancel = True
-            case (char, Flags(is_garbage=True)) if char == ">":
-                input_flags.is_garbage = False
-            case (_, Flags(is_garbage=True)):
-                StreamResult.garbage += 1
-            case ("<", _):
-                input_flags.is_garbage = True
-            case ("{", _):
-                input_flags.level += 1
-                StreamResult.score += input_flags.level
-            case ("}", _):
-                input_flags.level -= 1
+        match (char, cancel_mode, garbage_mode):
+            case (_, True, _):
+                cancel_mode = False
+            case ("!", _, _):
+                cancel_mode = True
+            case (">", _, True):
+                garbage_mode = False
+            case (_, _, True):
+                garbage += 1
+            case ("<", _, _):
+                garbage_mode = True
+            case ("{", _, _):
+                level += 1
+                score += level
+            case ("}", _, _):
+                level -= 1
 
-    return stream_result
+    return StreamResult(score, garbage)
 
 
 def get_input_data() -> InputType:
