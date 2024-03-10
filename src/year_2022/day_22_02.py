@@ -15,7 +15,7 @@ ROCK, PAPER, SCISSORS = 1, 2, 3
 LOSE, DRAW, WIN = 0, 3, 6
 
 
-def round_score_1(elf: int, me: int) -> int:
+def get_score(elf: int, me: int) -> int:
     match (elf, me):
         case (elf, me) if (elf, me) in {
             (PAPER, ROCK),
@@ -29,33 +29,17 @@ def round_score_1(elf: int, me: int) -> int:
             return WIN + me
 
 
-def round_score_2(opponent: int, decision: int) -> int:
-    if decision == ROCK:  # lose
-        if opponent == ROCK:
-            return round_score_1(ROCK, SCISSORS)
-        if opponent == PAPER:
-            return round_score_1(PAPER, ROCK)
-        if opponent == SCISSORS:
-            return round_score_1(SCISSORS, PAPER)
-    if decision == PAPER:  # draw
-        if opponent == ROCK:
-            return round_score_1(ROCK, ROCK)
-        if opponent == PAPER:
-            return round_score_1(PAPER, PAPER)
-        if opponent == SCISSORS:
-            return round_score_1(SCISSORS, SCISSORS)
-    if decision == SCISSORS:  # win
-        if opponent == ROCK:
-            return round_score_1(ROCK, PAPER)
-        if opponent == PAPER:
-            return round_score_1(PAPER, SCISSORS)
-        if opponent == SCISSORS:
-            return round_score_1(SCISSORS, ROCK)
+def strategic_score(elf: int, outcome: int) -> int:
+    losing_move = {ROCK: SCISSORS, PAPER: ROCK, SCISSORS: PAPER}
+    winning_move = {ROCK: PAPER, PAPER: SCISSORS, SCISSORS: ROCK}
+    my_move = {ROCK: losing_move[elf], PAPER: elf, SCISSORS: winning_move[elf]}
+
+    return get_score(elf, my_move[outcome])
 
 
 def get_input_data() -> InputType:
     def as_rps(elf: str, me: str) -> tuple[int, int]:
-        mapping = {
+        str_to_rps = {
             "A": ROCK,
             "B": PAPER,
             "C": SCISSORS,
@@ -63,17 +47,17 @@ def get_input_data() -> InputType:
             "Y": PAPER,
             "Z": SCISSORS,
         }
-        return mapping[elf], mapping[me]
+        return str_to_rps[elf], str_to_rps[me]
 
     return [as_rps(*i.split(" ")) for i in read_input_lines(__file__, DAY)]
 
 
 def part_1(data: InputType) -> int:
-    return sum([round_score_1(elf, me) for elf, me in data])
+    return sum([get_score(elf, me) for elf, me in data])
 
 
 def part_2(data: InputType) -> int:
-    return sum([round_score_2(elf, decision) for elf, decision in data])
+    return sum([strategic_score(elf, decision) for elf, decision in data])
 
 
 def run_22_2(data: InputType) -> tuple[int, int]:
