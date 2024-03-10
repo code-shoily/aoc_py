@@ -1,4 +1,4 @@
-"""Advent of Code Year 2022, Day 6 - <?TITLE?>
+"""Advent of Code Year 2022, Day 6 - Tuning Trouble
 Problem Link: https://adventofcode.com/2022/day/6
 Difficulty: XS
 Tags: set slice
