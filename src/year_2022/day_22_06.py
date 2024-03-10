@@ -1,7 +1,7 @@
 """Advent of Code Year 2022, Day 6 - <?TITLE?>
 Problem Link: https://adventofcode.com/2022/day/6
-Difficulty:
-Tags:
+Difficulty: XS
+Tags: set slice
 """
 
 from helpers.input import read_input_lines
