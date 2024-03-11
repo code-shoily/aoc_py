@@ -1,7 +1,7 @@
-"""Advent of Code Year 2023, Day 2 - <?TITLE?>
+"""Advent of Code Year 2023, Day 2 - Cube Conundrum
 Problem Link: https://adventofcode.com/2023/day/2
-Difficulty:
-Tags:
+Difficulty: S
+Tags: comparison
 """
 
 from dataclasses import dataclass
