@@ -29,7 +29,7 @@ class Bag:
     def product(self):
         return self.red * self.green * self.blue
 
-    def __or__(self, other: Self) -> Self:
+    def __or__(self, other: "Bag") -> "Bag":
         return Bag(
             max(self.red, other.red),
             max(self.green, other.green),
