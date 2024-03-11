@@ -5,7 +5,6 @@ Tags: set
 """
 
 from dataclasses import dataclass
-from typing import Self
 
 from helpers.input import read_input_lines
 
@@ -17,21 +16,23 @@ OutputType = tuple[int, int]
 
 @dataclass
 class Card:
-    card_id: int
+    id: int
     winning_set: set[int]
     my_set: set[int]
 
-    def winning_card_ids(self, highest_card_id: int) -> list[int]:
-        card_id_range = range(1, 1 + len(self.winning_set & self.my_set))
-        return [self.card_id + i for i in card_id_range][: highest_card_id + 1]
+    def __post_init__(self):
+        self.count = len(self.winning_set & self.my_set)
+
+    def winning_ids(self, limit: int) -> list[int]:
+        return [self.id + i for i in range(1, 1 + self.count)][: limit + 1]
 
     @property
     def point(self):
-        power = len(self.winning_set & self.my_set) - 1
+        power = self.count - 1
         return 2**power if power >= 0 else 0
 
     @classmethod
-    def from_line(cls, line: str) -> Self:
+    def from_line(cls, line: str) -> "Card":
         lhs, rhs = line.removeprefix("Card ").split(": ")
         winning, mine = ({int(i) for i in side.split()} for side in rhs.split(" | "))
         return cls(int(lhs), winning, mine)
@@ -46,14 +47,14 @@ def part_1(data: InputType) -> int:
 
 
 def part_2(data: InputType) -> int:
-    last_card_id = max(i.card_id for i in data)
-    tally = {i: 1 for i in range(1, last_card_id + 1)}
+    last_id = max(i.id for i in data)
+    tally = {i: 1 for i in range(1, last_id + 1)}
 
     for card in data:
-        for winning_card_id in card.winning_card_ids(last_card_id):
-            tally[winning_card_id] += tally[card.card_id]
+        for winning_id in card.winning_ids(last_id + 1):
+            tally[winning_id] += tally[card.id]
 
-    return sum(map(lambda i: tally[i.card_id], data))
+    return sum(map(lambda i: tally[i.id], data))
 
 
 def run_23_4(data: InputType) -> tuple[int, int]:
