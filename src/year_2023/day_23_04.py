@@ -4,6 +4,7 @@ Difficulty: S
 Tags: set
 """
 
+from collections import defaultdict
 from dataclasses import dataclass
 
 from helpers.input import read_input_lines
@@ -14,14 +15,10 @@ InputType = list["Card"]
 OutputType = tuple[int, int]
 
 
-@dataclass
+@dataclass(frozen=True)
 class Card:
     id: int
-    winning_set: set[int]
-    my_set: set[int]
-
-    def __post_init__(self):
-        self.count = len(self.winning_set & self.my_set)
+    count: int
 
     def winning_ids(self, limit: int) -> list[int]:
         return [self.id + i for i in range(1, 1 + self.count)][: limit + 1]
@@ -35,7 +32,7 @@ class Card:
     def from_line(cls, line: str) -> "Card":
         lhs, rhs = line.removeprefix("Card ").split(": ")
         winning, mine = ({int(i) for i in side.split()} for side in rhs.split(" | "))
-        return cls(int(lhs), winning, mine)
+        return cls(int(lhs), len(winning & mine))
 
 
 def get_input_data() -> InputType:
@@ -48,7 +45,7 @@ def part_1(data: InputType) -> int:
 
 def part_2(data: InputType) -> int:
     last_id = max(i.id for i in data)
-    tally = {i: 1 for i in range(1, last_id + 1)}
+    tally: dict[int, int] = defaultdict(lambda: 1)
 
     for card in data:
         for winning_id in card.winning_ids(last_id + 1):
