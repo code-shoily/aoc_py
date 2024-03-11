@@ -6,7 +6,7 @@ import sys
 
 sys.path.append("src")
 
-YEAR = os.environ.get("YEAR", 2022)
+YEAR = os.environ.get("YEAR", 2023)
 DAY = os.environ.get("DAY", 2)
 
 
