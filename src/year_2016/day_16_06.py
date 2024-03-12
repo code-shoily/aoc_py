@@ -1,7 +1,7 @@
 """Advent of Code Year 2016, Day 6 - Signals and Noise
 Problem Link: https://adventofcode.com/2016/day/6
 Difficulty: XS
-Tags: counter
+Tags: counter todo-refactor
 """
 
 from collections import Counter
