@@ -13,7 +13,7 @@ def load_day(year: int, day: int):
     year_part = year % 2000
     day_part = str(day).rjust(2, "0")
 
-    return importlib.import_module(f"year_{year}.day_{year_part}_{day_part}")
+    return importlib.import_module(f"aoc_py.year_{year}.day_{year_part}_{day_part}")
 
 
 D = load_day(YEAR, DAY)
