@@ -55,6 +55,9 @@ def test_day_{2}_{1}_works():
 
 """
 
+SRC_ROOT = "src/aoc_py"
+TEST_ROOT = "test/aoc_py"
+
 
 def fetch_input_data(year, day):
     return requests.get(
@@ -79,16 +82,16 @@ def day_part(year: str, day: str) -> str:
 
 
 def gen_input(year: str, day: str) -> str:
-    return do_gen(f"src/year_{year}/files/{day_part(year, day)}.txt", None, year, day)
+    return do_gen(f"{SRC_ROOT}/year_{year}/files/{day_part(year, day)}.txt", None, year, day)
 
 
 def gen_src(year: str, day: str) -> str:
-    return do_gen(f"src/year_{year}/day_{day_part(year, day)}.py", SRC_TPL, year, day)
+    return do_gen(f"{SRC_ROOT}/year_{year}/day_{day_part(year, day)}.py", SRC_TPL, year, day)
 
 
 def gen_test(year: str, day: str) -> str:
     return do_gen(
-        f"test/test_year_{year}/test_day_{day_part(year, day)}.py", TEST_TPL, year, day
+        f"{TEST_ROOT}/test_year_{year}/test_day_{day_part(year, day)}.py", TEST_TPL, year, day
     )
 
 
