@@ -1,22 +1,32 @@
-[tool.mypy]
-python_version = 3.12
-exclude = [
-    "venv",
+[project]
+name = "aoc-py"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "ipython>=9.2.0",
+    "mypy>=1.15.0",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.1.1",
+    "requests>=2.32.3",
+    "ruff>=0.11.9",
+    "types-requests>=2.32.0.20250328",
 ]
+
+[project.scripts]
+algopy-pkg = "algopy_pkg:main"
 
 [tool.pytest.ini_options]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')"
 ]
-pythonpath = "src"
-addopts = "--doctest-modules --cov"
+addopts = "-m 'not slow' --doctest-modules --cov"
 log_cli="true"
 log_level="DEBUG"
 log_format = "%(asctime)s %(levelname)s %(message)s"
 log_date_format = "%Y-%m-%d %H:%M:%S"
 
-[tool.ruff]
-extend-include = ["*.ipynb"]
-
-[tool.ruff.lint]
-select = ["E", "F", "UP", "B", "SIM", "I"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

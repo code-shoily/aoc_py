@@ -1,8 +1,0 @@
-ipython
-mypy
-pre-commit
-pytest
-pytest-cov
-requests
-ruff
-types-requests
